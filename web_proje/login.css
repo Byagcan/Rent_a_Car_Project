@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=Playfair+Display:ital@1&family=Poppins:wght@400;500;600;700;800;900&family=Raleway:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+}
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #eeeeee;
+}
+
+#lasthref {
+  margin-right: 15px;
+}
+
+section,
+span,
+p {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+.container {
+  margin: 0 auto;
+}
+
+.header-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0;
+  height: 8vh;
+  width: 100%;
+  background-color: #1b262c;
+}
+
+.header-logo {
+  display: flex;
+  margin-left: -5px;
+  margin-top: 00.5rem;
+  font-size: 16px;
+}
+
+.header-name {
+  margin-left: 0px;
+  margin-top: 20px;
+}
+
+.header-name h1 {
+  font-size: 25px;
+  color: white;
+  font-family: "IM Fell English SC", serif;
+}
+
+#logo {
+  width: 150px;
+}
+
+.header-menu ul {
+  display: flex;
+}
+
+.header-menu li {
+  color: #eeeeee;
+  margin-left: 27px;
+}
+
+.header-menu a {
+  font-family: "Raleway", sans-serif;
+  padding: 8px 12px;
+}
+
+.header-menu a:hover {
+  background-color: #787a91;
+}
+
+body {
+  background-image: url(images/roadd.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Log In */
+.login {
+  margin-top: 40px;
+  margin-bottom: 150px;
+  width: 300px;
+  padding: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.login-content {
+  justify-content: space-around;
+}
+
+.login h1 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0f4c75;
+  padding: 14px 10px;
+  width: 220px;
+  outline: none;
+  color: white;
+  border-radius: 15px;
+  transition: 0.25px;
+}
+input::placeholder {
+  color: white;
+}
+
+.login input[type="submit"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0f4c75;
+  padding: 10px 8px;
+  width: 90px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25px;
+  cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+  background: #0f4c75;
+}
+
+/* Footer */
+.footer-container {
+  max-width: 1170px;
+  margin: auto;
+}
+.footer-row {
+  display: flex;
+}
+.footer-ul {
+  list-style: none;
+}
+
+footer {
+  background-color: #222831;
+  height: auto;
+  width: 100vw;
+  padding: 70px 0;
+  left: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+
+.footer-col {
+  width: 25%;
+  padding: 0 15px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  color: #eeeeee;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  position: relative;
+}
+
+.footer-col h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: #e00000;
+  height: 2px;
+  box-sizing: border-box;
+  width: 70px;
+}
+
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  transition: all 0.3s ease;
+  height: 30px;
+}
+
+.footer-col ul li a:hover {
+  padding-left: 10px;
+}

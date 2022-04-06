@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=Playfair+Display:ital@1&family=Poppins:wght@400;500;600;700;800;900&family=Raleway:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+}
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #eeeeee;
+}
+
+#lasthref {
+  margin-right: 15px;
+}
+
+section,
+span,
+p {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+.container {
+  margin: 0 auto;
+}
+
+.header-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0;
+  height: 8vh;
+  width: 100%;
+  background-color: #1b262c;
+}
+
+.header-logo {
+  display: flex;
+  margin-left: -5px;
+  margin-top: 00.5rem;
+  font-size: 16px;
+}
+
+.header-name {
+  margin-left: 0px;
+  margin-top: 20px;
+}
+
+.header-name h1 {
+  font-size: 25px;
+  color: white;
+  font-family: "IM Fell English SC", serif;
+}
+
+#logo {
+  width: 150px;
+}
+
+.header-menu ul {
+  display: flex;
+}
+
+.header-menu li {
+  color: #eeeeee;
+  margin-left: 27px;
+}
+
+.header-menu a {
+  font-family: "Raleway", sans-serif;
+  padding: 8px 12px;
+}
+
+.header-menu a:hover {
+  background-color: #787a91;
+}
+
+/* Conditions */
+.conditions-body {
+  background-image: url(images/roadd.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.conditions h1 {
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+  font-size: 60px;
+  margin: 10px 0 0;
+  color: #fff;
+}
+
+.conditions .container {
+  width: 45%;
+  min-width: 500px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 65%;
+  left: 50%;
+}
+.conditions .wrapper {
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  padding: 15px 40px;
+  border-radius: 5px;
+  box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2);
+}
+.conditions .wrapper img {
+  height: 13px;
+  width: 13px;
+}
+.conditions .toggle,
+.content {
+  font-family: "Poppins", sans-serif;
+}
+.conditions .toggle {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #111130;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 15px 0;
+}
+.conditions .content {
+  position: relative;
+  font-size: 14px;
+  text-align: justify;
+  line-height: 30px;
+  height: 0;
+  overflow: hidden;
+  transition: all 1s;
+}
+
+/* Footer */
+.footer-container {
+  max-width: 1170px;
+  margin: auto;
+}
+.footer-row {
+  display: flex;
+}
+.footer-ul {
+  list-style: none;
+}
+
+footer {
+  background-color: #222831;
+  height: auto;
+  width: 100vw;
+  padding: 70px 0;
+  left: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+
+.footer-col {
+  width: 25%;
+  padding: 0 15px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  color: #eeeeee;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  position: relative;
+}
+
+.footer-col h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: #e00000;
+  height: 2px;
+  box-sizing: border-box;
+  width: 70px;
+}
+
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  transition: all 0.3s ease;
+  height: 30px;
+}
+
+.footer-col ul li a:hover {
+  padding-left: 10px;
+}
