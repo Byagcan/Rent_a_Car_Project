@@ -222,3 +222,69 @@ footer {
 .footer-col ul li a:hover {
   padding-left: 10px;
 }
+
+/* Responsive */
+
+/* Header Responsive */
+@media only screen and (max-width: 935px) {
+  .header-menu li {
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 831px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 120px 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 831px) {
+  .header-menu a {
+    font-size: 13px;
+  }
+}
+
+/* Conditions Responsive */
+@media only screen and (max-width: 1310px) {
+  .conditions-body {
+    height: 120vh;
+  }
+}
+
+@media only screen and (max-width: 832px) {
+  .conditions-body {
+    height: 150vh;
+  }
+  .conditions h1 {
+    margin-top: 20px;
+  }
+  .conditions .container {
+    margin-top: 150px;
+  }
+}
+
+/* Footer Responsive */
+@media only screen and (max-width: 790px) {
+  .footer {
+    padding: 120px;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-col {
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .footer-row {
+    float: left;
+  }
+}

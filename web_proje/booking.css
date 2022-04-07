@@ -305,3 +305,91 @@ footer {
 .footer-col ul li a:hover {
   padding-left: 10px;
 }
+
+/* Responsive */
+
+/* Header Responsive */
+@media only screen and (max-width: 935px) {
+  .header-menu li {
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 831px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 120px 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 831px) {
+  .header-menu a {
+    font-size: 13px;
+  }
+}
+
+/* Booking Responsive */
+@media only screen and (max-width: 831px) {
+  .booking {
+    margin-top: 300px;
+  }
+}
+
+@media only screen and (max-width: 831px) {
+  .carimg img {
+    width: 280px;
+    height: 230px;
+  }
+  .price {
+    padding: 70px 70px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .carimg img {
+    width: 240px;
+    height: 190px;
+  }
+  .price {
+    padding: 50px 50px;
+  }
+}
+
+@media only screen and (max-width: 539px) {
+  .carimg img {
+    width: 200px;
+    height: 150px;
+  }
+  .price {
+    margin-top: 60px;
+    padding: 30px 30px;
+  }
+  .radio-type label {
+    font-size: 13px;
+  }
+}
+
+/* Footer Responsive */
+@media only screen and (max-width: 790px) {
+  .footer {
+    padding: 120px;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-col {
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .footer-row {
+    float: left;
+  }
+}
