@@ -111,7 +111,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   padding: 120px;
 }
 
@@ -167,8 +167,6 @@ input[type="date"]:hover {
 }
 
 .links {
-  margin-right: 250px;
-  border-right: 2px solid white;
   width: 30%;
 }
 
@@ -181,8 +179,9 @@ h3 {
   margin-top: 5px;
 }
 
-button {
+.links input[type="submit"] {
   padding: 5px 12px;
+  width: 140px;
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid white;
   color: white;
@@ -190,7 +189,7 @@ button {
   border-radius: 3px;
 }
 
-button:hover {
+.links input[type="submit"]:hover {
   background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
   cursor: pointer;
 }
@@ -276,4 +275,67 @@ footer {
 
 .footer-col ul li a:hover {
   padding-left: 10px;
+}
+
+/* Responsive */
+
+/* Header Responsive */
+@media only screen and (max-width: 935px) {
+  .header-menu li {
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 831px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 120px 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 831px) {
+  .header-menu a {
+    font-size: 13px;
+  }
+}
+
+/* Accounts Responsive */
+@media only screen and (max-width: 812px) {
+  .links {
+    margin-right: 70px;
+  }
+}
+@media only screen and (max-width: 715px) {
+  .links {
+    margin-right: 90px;
+  }
+
+  .links a {
+    font-size: 10px;
+  }
+}
+
+/* Footer Responsive */
+@media only screen and (max-width: 790px) {
+  .footer {
+    padding: 120px;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-col {
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .footer-row {
+    float: left;
+  }
 }

@@ -106,37 +106,8 @@ body {
   background-color: #787a91;
 }
 
-.mySlides {
-  display: none;
-}
 img {
   vertical-align: middle;
-}
-
-/* Slideshow container */
-.slideshow-container {
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-  margin-top: 0px;
-  position: relative;
-}
-
-/* Next & previous buttons */
-.header .prev,
-.header .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 20px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
 }
 
 .next {
@@ -178,7 +149,7 @@ img {
 .carlist-row {
   margin-bottom: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
 }
 
@@ -200,7 +171,6 @@ img {
   cursor: pointer;
   position: absolute;
   width: auto;
-  padding: 20px;
   color: white;
   font-weight: bold;
   font-size: 18px;
@@ -376,21 +346,66 @@ footer {
   }
 }
 
-@media only screen and (max-width: 831px) {
+@media only screen and (max-width: 1046px) {
   .carlist .slideshow-container {
     margin-left: 280px;
   }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 832px) {
   .carlist .slideshow-container {
-    margin-left: 210px;
+    margin-left: 220px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .carlist .slideshow-container {
+    margin-left: 190px;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .carlist .slideshow-container {
+    margin-left: 140px;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1291px) {
+  .carlist-row {
+    grid-template-columns: 1.5fr 1.5fr 1.5fr;
+  }
+}
+
+@media only screen and (max-width: 1046px) {
+  body {
+    height: 290vh;
+  }
+  .carlist-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 709px) {
+  body {
+    height: 470vh;
+  }
+  .carlist-row {
+    grid-template-columns: 1fr;
+  }
+
+  .carlist-column {
+    margin-right: 60px;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  .carlist .slideshow-container {
-    margin-left: 150px;
+  body {
+    height: 470vh;
+  }
+  .carlist-row {
+    grid-template-columns: 1fr;
   }
 }
 
