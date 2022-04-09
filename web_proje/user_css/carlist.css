@@ -106,8 +106,38 @@ body {
   background-color: #787a91;
 }
 
+.mySlides {
+  display: none;
+}
+
 img {
   vertical-align: middle;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  margin-top: 0px;
+  position: relative;
+}
+
+/* Next & previous buttons */
+.header .prev,
+.header .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 20px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
 }
 
 .next {
@@ -170,7 +200,10 @@ img {
 .carlist .next {
   cursor: pointer;
   position: absolute;
+  top: 50%;
   width: auto;
+  padding: 20px;
+  margin-top: -22px;
   color: white;
   font-weight: bold;
   font-size: 18px;
