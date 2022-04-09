@@ -46,6 +46,16 @@ p {
   margin: 0 auto;
 }
 
+body {
+  background-image: url(../../images/roadd.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .header-navbar {
   display: flex;
   align-items: center;
@@ -96,17 +106,9 @@ p {
   background-color: #787a91;
 }
 
-body {
-  background-image: url(images/roadd.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-/* Log In */
-.login {
+/* Sign Up */
+
+.signup {
   margin-top: 40px;
   margin-bottom: 150px;
   width: 300px;
@@ -119,19 +121,19 @@ body {
   text-align: center;
 }
 
-.login-content {
+.signup-content {
   justify-content: space-around;
 }
 
-.login h1 {
+.signup h1 {
   color: white;
   text-transform: uppercase;
   font-weight: 700;
   font-family: "Raleway", sans-serif;
 }
 
-.login input[type="text"],
-.login input[type="password"] {
+.signup input[type="text"],
+.signup input[type="password"] {
   border: 0;
   background: none;
   display: block;
@@ -149,7 +151,7 @@ input::placeholder {
   color: white;
 }
 
-.login input[type="submit"] {
+.signup input[type="submit"] {
   border: 0;
   background: none;
   display: block;
@@ -165,80 +167,24 @@ input::placeholder {
   cursor: pointer;
 }
 
-.login input[type="submit"]:hover {
+.signup input[type="submit"]:hover {
   background: #0f4c75;
 }
 
-/* Footer */
-.footer-container {
-  max-width: 1170px;
-  margin: auto;
-}
-.footer-row {
-  display: flex;
-}
-.footer-ul {
-  list-style: none;
-}
-
-footer {
-  background-color: #222831;
-  height: auto;
-  width: 100vw;
-  padding: 70px 0;
-  left: 0px;
-  bottom: 0px;
-  overflow: hidden;
-}
-
-.footer-col {
-  width: 25%;
-  padding: 0 15px;
-}
-
-.footer-col h4 {
-  font-size: 18px;
-  color: #eeeeee;
-  text-transform: capitalize;
-  margin-bottom: 30px;
+.signuplink a {
+  color: white;
   font-family: "Raleway", sans-serif;
-  font-weight: 500;
-  position: relative;
-}
-
-.footer-col h4::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  background-color: #e00000;
-  height: 2px;
-  box-sizing: border-box;
-  width: 70px;
-}
-
-.footer-col ul li a {
-  font-size: 16px;
-  text-transform: capitalize;
-  text-decoration: none;
-  font-weight: 300;
-  display: block;
-  transition: all 0.3s ease;
-  height: 30px;
-}
-
-.footer-col ul li a:hover {
-  padding-left: 10px;
 }
 
 /* Responsive */
+
 /* Header Responsive */
-@media only screen and (max-width: 935px) {
+@media screen and (max-width: 919px) {
   .header-menu li {
-    margin-left: 10px;
+    margin-left: 5px;
   }
 }
-@media only screen and (max-width: 831px) {
+@media screen and (max-width: 787px) {
   .header-navbar {
     display: flex;
     flex-direction: column;
@@ -246,37 +192,14 @@ footer {
     align-items: center;
     justify-content: center;
   }
-}
-@media only screen and (max-width: 831px) {
-  .header-menu a {
-    font-size: 13px;
-  }
 
-  .login {
-    margin-top: 250px;
+  .signup {
+    margin-top: 130px;
   }
 }
 
-/* Footer Responsive */
-@media only screen and (max-width: 790px) {
-  .footer {
-    padding: 120px;
-  }
-
-  .footer-row {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    float: left;
-  }
-
-  .footer-col {
-    margin-top: 30px;
-  }
-}
-
-@media only screen and (max-width: 590px) {
-  .footer-row {
-    float: left;
+@media screen and (max-width: 518px) {
+  .header-menu li {
+    font-size: 15px;
   }
 }

@@ -97,123 +97,76 @@ p {
 }
 
 body {
-  background-image: url(images/roadd.jpg);
+  background-image: url(../images/roadd.jpg);
+  background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-/* Account */
-.row {
+/* Log In */
+.login {
+  margin-top: 40px;
+  margin-bottom: 150px;
+  width: 300px;
+  padding: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 120px;
-}
-.information input[type="password"] {
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid white;
-  padding: 8px 35px;
-  color: white;
-}
-
-.information input[type="password"]:hover {
-  cursor: pointer;
-}
-
-.information input[type="submit"] {
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid white;
-  padding: 8px 10px;
-  color: white;
-  margin: 20px 70px;
-  border-radius: 3px;
-}
-
-.information input[type="submit"]:hover {
-  background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
-  cursor: pointer;
-}
-
-.oldpassword {
-  display: inline-block;
-}
-
-.newpassword {
-  display: block;
-}
-
-.newpasswordagain {
-  display: block;
-}
-
-.submit {
-  display: block;
-}
-
-.links {
-  width: 30%;
-}
-
-.links a:hover {
-  transition: all 0.3s ease;
-}
-
-h3 {
-  color: white;
-  margin-top: 5px;
-}
-
-.links input[type="submit"] {
-  padding: 5px 12px;
-  width: 140px;
-  background-color: rgba(255, 255, 255, 0);
-  border: 1px solid white;
-  color: white;
   text-align: center;
-  border-radius: 3px;
 }
 
-.links input[type="submit"]:hover {
-  background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
-  cursor: pointer;
+.login-content {
+  justify-content: space-around;
 }
 
-.image img {
-  height: 120px;
-  width: 120px;
-  /* margin-left: 170px; */
-}
-
-.image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 70px;
-  margin-left: 50%;
-}
-
-.image h1 {
-  /* margin-left: 300px; */
-  font-size: 30px;
+.login h1 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
   font-family: "Raleway", sans-serif;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0f4c75;
+  padding: 14px 10px;
+  width: 220px;
+  outline: none;
+  color: white;
+  border-radius: 15px;
+  transition: 0.25px;
+}
+input::placeholder {
   color: white;
 }
 
-.general {
-  margin-bottom: 70px;
+.login input[type="submit"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0f4c75;
+  padding: 10px 8px;
+  width: 90px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25px;
+  cursor: pointer;
 }
 
-.changepassword {
-  margin-bottom: 70px;
-}
-
-.logout {
-  margin-bottom: 70px;
+.login input[type="submit"]:hover {
+  background: #0f4c75;
 }
 
 /* Footer */
@@ -279,7 +232,6 @@ footer {
 }
 
 /* Responsive */
-
 /* Header Responsive */
 @media only screen and (max-width: 935px) {
   .header-menu li {
@@ -299,32 +251,9 @@ footer {
   .header-menu a {
     font-size: 13px;
   }
-}
 
-/* Accounts Responsive */
-@media only screen and (max-width: 812px) {
-  .links {
-    margin-right: 70px;
-  }
-}
-@media only screen and (max-width: 715px) {
-  .links {
-    margin-right: 90px;
-  }
-
-  .links a {
-    font-size: 10px;
-  }
-}
-
-@media only screen and (max-width: 1068px) {
-  .image {
-    margin-left: 100px;
-  }
-}
-@media only screen and (max-width: 816px) {
-  .image {
-    margin-left: 130px;
+  .login {
+    margin-top: 250px;
   }
 }
 
@@ -338,7 +267,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    float: left;
   }
 
   .footer-col {

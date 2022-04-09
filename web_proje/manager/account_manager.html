@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="user_css/account.css" />
+    <link rel="stylesheet" href="manager_css/account_manager.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
   </head>
   <body>
@@ -15,8 +15,8 @@
         <div class="container">
           <div class="header-navbar">
             <div class="header-logo">
-              <a href="index.html" style="cursor: pointer"
-                ><img id="logo" src="images/1.png" alt=""
+              <a href="index_manager.html" style="cursor: pointer"
+                ><img id="logo" src="../images/1.png" alt=""
               /></a>
               <div class="header-name">
                 <h1>Rent A Car</h1>
@@ -24,12 +24,14 @@
             </div>
             <div class="header-menu">
               <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="log_ın.html">Log In</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="conditions.html">Conditions</a></li>
-                <li><a href="carlist.html">Car List</a></li>
-                <li id="lasthref"><a href="account.html">Account</a></li>
+                <li><a href="edit_manager.html">Edit</a></li>
+                <li><a href="login_manager.html">Log In</a></li>
+                <li><a href="addcar_manager.html">Add Car</a></li>
+                <li><a href="users_manager.html">Users</a></li>
+                <li><a href="condition_manager.html">Conditions</a></li>
+                <li id="lasthref">
+                  <a href="account_manager.html">Account</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -47,20 +49,20 @@
             <div class="row">
               <div class="column links">
                 <div class="image">
-                  <img src="images/user.png" alt="" />
+                  <img src="../images/user.png" alt="" />
                 </div>
                 <div class="general">
-                  <form action="account.html">
+                  <form action="account_manager.html">
                     <input type="submit" value="Information" />
                   </form>
                 </div>
                 <div class="changepassword">
-                  <form action="changepassword.html">
+                  <form action="changepassword_manager.html">
                     <input type="submit" value="Change Password" />
                   </form>
                 </div>
                 <div class="logout">
-                  <form action="index.html">
+                  <form action="index_manager.html">
                     <input type="submit" value="Log Out" />
                   </form>
                 </div>
@@ -93,7 +95,7 @@
                     <input type="text" />
                   </div>
                   <div class="submit">
-                    <form action="index.html">
+                    <form action="index_manager.html">
                       <input type="submit" value="submit" id="submit" />
                     </form>
                   </div>
@@ -106,55 +108,7 @@
     </section>
 
     <!-- Account Finish -->
-
-    <!-- Footer Start -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-row">
-          <div class="footer-col">
-            <h4>Company</h4>
-            <ul class="footer-ul">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="conditions.html">Conditions</a></li>
-              <li><a href="carlist.html">Car List</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Contact Us</h4>
-            <ul>
-              <li><a href="#">05945242061</a></li>
-              <li><a href="#">rentacar@gmail.com</a></li>
-              <li><a href="#">Akdeniz Üniversitesi</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Follow Us</h4>
-            <ul>
-              <li><a href="#">instagram.com/rentacar</a></li>
-              <li><a href="#">twitter.com/rentacar</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Feedback</h4>
-            <ul class="footer-ul">
-              <p style="font-family: Raleway, sans-serif; color: white">
-                Write your feedback
-              </p>
-              <input type="text" style="border-radius: 5px" />
-              <input
-                type="submit"
-                value="submit"
-                style="border-radius: 15px; padding: 2.5px; cursor: pointer"
-              />
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Footer Finish -->
   </body>
-
   <script>
     window.sr = ScrollReveal();
     sr.reveal(".anime-top", {

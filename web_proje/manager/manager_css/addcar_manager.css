@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=Playfair+Display:ital@1&family=Poppins:wght@400;500;600;700;800;900&family=Raleway:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+}
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #eeeeee;
+}
+
+#lasthref {
+  margin-right: 15px;
+}
+
+section,
+span,
+p {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+.container {
+  margin: 0 auto;
+}
+
+body {
+  background-image: url(../../images/roadd.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0;
+  height: 8vh;
+  width: 100%;
+  background-color: #1b262c;
+}
+
+.header-logo {
+  display: flex;
+  margin-left: -5px;
+  margin-top: 00.5rem;
+  font-size: 16px;
+}
+
+.header-name {
+  margin-left: 0px;
+  margin-top: 20px;
+}
+
+.header-name h1 {
+  font-size: 25px;
+  color: white;
+  font-family: "IM Fell English SC", serif;
+}
+
+#logo {
+  width: 150px;
+}
+
+.header-menu ul {
+  display: flex;
+}
+
+.header-menu li {
+  color: #eeeeee;
+  margin-left: 27px;
+}
+
+.header-menu a {
+  font-family: "Raleway", sans-serif;
+  padding: 8px 12px;
+}
+
+.header-menu a:hover {
+  background-color: #787a91;
+}
+
+/* Edit */
+.edit {
+  margin-top: 200px;
+  margin-bottom: 150px;
+  width: 950px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.image img {
+  width: 400px;
+  border: 2px solid white;
+  border-radius: 3px;
+  background-color: #eeeeee;
+}
+
+.description input[type="text"] {
+  padding: 8px 4px;
+  background-color: rgba(255, 255, 255, 0.73);
+  border-radius: 3px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+.description input[type="submit"] {
+  padding: 8px 15px;
+  background-color: rgba(255, 255, 255, 0.73);
+  border-radius: 3px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 120px;
+}
+
+.label label {
+  color: #eeeeee;
+}
+
+.label-radio label {
+  color: #eeeeee;
+  margin-right: 15px;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+}
+
+.icon input {
+  padding: 6px 8px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+select {
+  padding: 6px 8px;
+  margin-right: 5px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.73);
+}
+
+.icon img {
+  height: 30px;
+  width: 30px;
+  margin-right: 20px;
+}
+
+.radio-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive */
+
+/* Header Responsive */
+@media screen and (max-width: 919px) {
+  .header-menu li {
+    margin-left: 5px;
+  }
+}
+@media screen and (max-width: 787px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 120px 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .edit {
+    margin-top: 300px;
+  }
+}
+
+@media screen and (max-width: 518px) {
+  .header-menu li {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .edit {
+    width: 700px;
+  }
+
+  .image img {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 726px) {
+  .edit {
+    width: 550px;
+  }
+
+  .image img {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .edit {
+    width: 400px;
+  }
+  .label-radio label {
+    color: #eeeeee;
+    margin-right: 0;
+  }
+
+  .icon img {
+    margin-right: 5px;
+  }
+}

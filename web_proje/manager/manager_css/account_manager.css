@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=Playfair+Display:ital@1&family=Poppins:wght@400;500;600;700;800;900&family=Raleway:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+}
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #eeeeee;
+}
+
+#lasthref {
+  margin-right: 15px;
+}
+
+section,
+span,
+p {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+.container {
+  margin: 0 auto;
+}
+
+.header-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0;
+  height: 8vh;
+  width: 100%;
+  background-color: #1b262c;
+}
+
+.header-logo {
+  display: flex;
+  margin-left: -5px;
+  margin-top: 00.5rem;
+  font-size: 16px;
+}
+
+.header-name {
+  margin-left: 0px;
+  margin-top: 20px;
+}
+
+.header-name h1 {
+  font-size: 25px;
+  color: white;
+  font-family: "IM Fell English SC", serif;
+}
+
+#logo {
+  width: 150px;
+}
+
+.header-menu ul {
+  display: flex;
+}
+
+.header-menu li {
+  color: #eeeeee;
+  margin-left: 27px;
+}
+
+.header-menu a {
+  font-family: "Raleway", sans-serif;
+  padding: 8px 12px;
+}
+
+.header-menu a:hover {
+  background-color: #787a91;
+}
+
+body {
+  background-image: url(../../images/roadd.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Account */
+.row {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 120px;
+}
+
+.information input[type="text"],
+input[type="date"] {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  padding: 8px 35px;
+  color: white;
+}
+
+.information input[type="text"]:hover,
+input[type="date"]:hover {
+  cursor: pointer;
+}
+
+.information input[type="submit"] {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  padding: 8px 10px;
+  color: white;
+  margin: 20px 70px;
+  border-radius: 3px;
+}
+
+.information input[type="submit"]:hover {
+  background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
+  cursor: pointer;
+}
+
+.name {
+  display: inline-block;
+}
+
+.phonenumber {
+  display: block;
+}
+
+.email {
+  display: block;
+}
+
+.birthdate {
+  display: block;
+}
+
+.tc {
+  display: block;
+}
+
+.submit {
+  display: block;
+}
+
+.links {
+  width: 30%;
+}
+
+.links a:hover {
+  transition: all 0.3s ease;
+}
+
+h3 {
+  color: white;
+  margin-top: 5px;
+}
+
+.links input[type="submit"] {
+  padding: 5px 12px;
+  width: 140px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.links input[type="submit"]:hover {
+  background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
+  cursor: pointer;
+}
+
+.image img {
+  height: 120px;
+  width: 120px;
+}
+
+.image {
+  margin-bottom: 70px;
+}
+
+.general {
+  margin-bottom: 70px;
+}
+
+.changepassword {
+  margin-bottom: 70px;
+}
+
+.logout {
+  margin-bottom: 70px;
+}
+
+/* Responsive */
+
+/* Header Responsive */
+@media screen and (max-width: 919px) {
+  .header-menu li {
+    margin-left: 5px;
+  }
+}
+@media screen and (max-width: 787px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 120px 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 518px) {
+  .header-menu li {
+    font-size: 15px;
+  }
+}
+
+/* Accounts Responsive */
+@media only screen and (max-width: 812px) {
+  .links {
+    margin-right: 70px;
+  }
+}
+@media only screen and (max-width: 715px) {
+  .links {
+    margin-right: 90px;
+  }
+
+  .links a {
+    font-size: 10px;
+  }
+}

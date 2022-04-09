@@ -46,16 +46,6 @@ p {
   margin: 0 auto;
 }
 
-body {
-  background-image: url(images/roadd.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .header-navbar {
   display: flex;
   align-items: center;
@@ -106,142 +96,123 @@ body {
   background-color: #787a91;
 }
 
-/* Booking */
-.booking {
-  margin-top: 150px;
-  margin-bottom: 150px;
-  width: 950px;
-  padding: 100px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+body {
+  background-image: url(../images/roadd.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Account */
+.row {
   background-color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-}
-
-.booking-content {
-  margin: -100px;
-}
-
-.booking-row {
-  display: block;
-  justify-content: center;
-  align-items: center;
-}
-
-.booking-column {
   display: flex;
   justify-content: center;
-  align-items: center;
-  border-bottom: 3px solid white;
+  align-items: flex-end;
+  padding: 120px;
 }
 
-.carimg img {
-  margin-bottom: 50px;
-  border: 2px solid #cccccc;
-  background-color: #ffffff;
-  padding: 1px;
-  height: 70%;
-  width: 70%;
-}
-
-.price {
-  margin-bottom: 30px;
-}
-
-.booking-button {
-  margin-top: 50px;
-  margin-right: 40px;
-}
-
-.price input[type="text"] {
+.information input[type="text"],
+input[type="date"] {
   background-color: rgba(0, 0, 0, 0);
-  padding: 7px;
-  width: 200px;
-  margin-bottom: 5px;
+  border: 1px solid white;
+  padding: 8px 35px;
+  color: white;
+}
+
+.information input[type="text"]:hover,
+input[type="date"]:hover {
+  cursor: pointer;
+}
+
+.information input[type="submit"] {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  padding: 8px 10px;
+  color: white;
+  margin: 20px 70px;
   border-radius: 3px;
 }
 
-.price input::placeholder {
-  color: white;
-  font-size: large;
+.information input[type="submit"]:hover {
+  background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
+  cursor: pointer;
 }
 
-.select-part {
+.name {
+  display: inline-block;
+}
+
+.phonenumber {
   display: block;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
 }
 
-select {
-  padding: 7px;
-  width: 180px;
-  margin-top: 10px;
-  margin-bottom: 17px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid white;
-  color: white;
-}
-
-.booking option {
-  color: white;
-  background-color: black;
-}
-
-.p-information {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-right: 30px;
-}
-
-.r-information {
-  margin-left: 30px;
-}
-
-.date-part input[type="date"] {
-  padding: 4px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid white;
-  color: white;
-}
-
-.date-part input[type="time"] {
-  padding: 3px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid white;
-  color: white;
-}
-
-.booking h3 {
-  color: white;
-  font-family: "Raleway", sans-serif;
-  margin-bottom: 2px;
-}
-
-.booking h1 {
-  color: white;
-  font-family: "Raleway", sans-serif;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  letter-spacing: 10px;
-}
-
-.radio-type {
+.email {
   display: block;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
 }
 
-.radio-type label {
+.birthdate {
+  display: block;
+}
+
+.tc {
+  display: block;
+}
+
+.submit {
+  display: block;
+}
+
+.links {
+  width: 30%;
+}
+
+.links a:hover {
+  transition: all 0.3s ease;
+}
+
+h3 {
   color: white;
-  margin-right: 8px;
+  margin-top: 5px;
+}
+
+.links input[type="submit"] {
+  padding: 5px 12px;
+  width: 140px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.links input[type="submit"]:hover {
+  background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
+  cursor: pointer;
+}
+
+.image img {
+  height: 120px;
+  width: 120px;
+}
+
+.image {
+  margin-bottom: 70px;
+}
+
+.general {
+  margin-bottom: 70px;
+}
+
+.changepassword {
+  margin-bottom: 70px;
+}
+
+.logout {
+  margin-bottom: 70px;
 }
 
 /* Footer */
@@ -329,44 +300,19 @@ footer {
   }
 }
 
-/* Booking Responsive */
-@media only screen and (max-width: 831px) {
-  .booking {
-    margin-top: 300px;
+/* Accounts Responsive */
+@media only screen and (max-width: 812px) {
+  .links {
+    margin-right: 70px;
   }
 }
+@media only screen and (max-width: 715px) {
+  .links {
+    margin-right: 90px;
+  }
 
-@media only screen and (max-width: 831px) {
-  .carimg img {
-    width: 280px;
-    height: 230px;
-  }
-  .price {
-    padding: 70px 70px;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .carimg img {
-    width: 240px;
-    height: 190px;
-  }
-  .price {
-    padding: 50px 50px;
-  }
-}
-
-@media only screen and (max-width: 539px) {
-  .carimg img {
-    width: 200px;
-    height: 150px;
-  }
-  .price {
-    margin-top: 60px;
-    padding: 30px 30px;
-  }
-  .radio-type label {
-    font-size: 13px;
+  .links a {
+    font-size: 10px;
   }
 }
 

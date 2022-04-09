@@ -46,6 +46,16 @@ p {
   margin: 0 auto;
 }
 
+body {
+  background-image: url(../images/roadd.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .header-navbar {
   display: flex;
   align-items: center;
@@ -96,69 +106,137 @@ p {
   background-color: #787a91;
 }
 
-/* Conditions */
-.conditions-body {
-  background-image: url(images/roadd.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.conditions h1 {
-  font-family: "Raleway", sans-serif;
+/* Booking */
+.booking {
+  margin-top: 150px;
+  margin-bottom: 150px;
+  width: 950px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
   text-align: center;
-  font-size: 60px;
-  margin: 10px 0 0;
-  color: #fff;
 }
 
-.conditions .container {
-  width: 45%;
-  min-width: 500px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 65%;
-  left: 50%;
-}
-.conditions .wrapper {
-  background-color: #ffffff;
-  margin-bottom: 20px;
-  padding: 15px 40px;
-  border-radius: 5px;
-  box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2);
-}
-.conditions .wrapper img {
-  height: 13px;
-  width: 13px;
-}
-.conditions .toggle,
-.content {
-  font-family: "Poppins", sans-serif;
-}
-.conditions .toggle {
-  width: 100%;
-  background-color: transparent;
-  display: flex;
+.booking-row {
+  display: block;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  font-size: 16px;
-  color: #111130;
-  font-weight: 500;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 15px 0;
 }
-.conditions .content {
-  position: relative;
-  font-size: 14px;
-  text-align: justify;
-  line-height: 30px;
-  height: 0;
-  overflow: hidden;
-  transition: all 1s;
+
+.booking-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid white;
+}
+
+.carimg img {
+  margin-bottom: 50px;
+  border: 2px solid #cccccc;
+  background-color: #ffffff;
+  padding: 1px;
+  height: 70%;
+  width: 70%;
+}
+
+.price {
+  margin-bottom: 30px;
+}
+
+.booking-button {
+  margin-top: 50px;
+  margin-right: 40px;
+}
+
+.price input[type="text"] {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 7px;
+  width: 200px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+}
+
+.price input::placeholder {
+  color: white;
+  font-size: large;
+}
+
+.select-part {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+select {
+  padding: 7px;
+  width: 180px;
+  margin-top: 10px;
+  margin-bottom: 17px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid white;
+  color: white;
+}
+
+.booking option {
+  color: white;
+  background-color: black;
+}
+
+.p-information {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+.r-information {
+  margin-left: 30px;
+}
+
+.date-part input[type="date"] {
+  padding: 4px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid white;
+  color: white;
+}
+
+.date-part input[type="time"] {
+  padding: 3px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid white;
+  color: white;
+}
+
+.booking h3 {
+  color: white;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 2px;
+}
+
+.booking h1 {
+  color: white;
+  font-family: "Raleway", sans-serif;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+.radio-type {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.radio-type label {
+  color: white;
+  margin-right: 8px;
 }
 
 /* Footer */
@@ -246,22 +324,36 @@ footer {
   }
 }
 
-/* Conditions Responsive */
-@media only screen and (max-width: 1310px) {
-  .conditions-body {
-    height: 120vh;
+/* Booking Responsive */
+@media only screen and (max-width: 972px) {
+  .booking {
+    width: 800px;
+  }
+}
+@media only screen and (max-width: 831px) {
+  .booking {
+    margin-top: 300px;
   }
 }
 
-@media only screen and (max-width: 832px) {
-  .conditions-body {
-    height: 150vh;
+@media only screen and (max-width: 831px) {
+  .booking {
+    width: 650px;
   }
-  .conditions h1 {
-    margin-top: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+  .booking {
+    width: 450px;
   }
-  .conditions .container {
-    margin-top: 150px;
+  select {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 539px) {
+  .booking {
+    width: 400px;
   }
 }
 

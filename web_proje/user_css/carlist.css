@@ -47,10 +47,10 @@ p {
 }
 
 body {
-  background-image: url(images/roadd.jpg);
+  background-image: url(../images/roadd.jpg);
+  background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
-  height: 200vh;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
