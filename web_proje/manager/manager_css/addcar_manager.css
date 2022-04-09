@@ -237,7 +237,7 @@ select {
 
 @media screen and (max-width: 568px) {
   .edit {
-    width: 400px;
+    width: 450px;
   }
   .label-radio label {
     color: #eeeeee;
