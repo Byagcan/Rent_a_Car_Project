@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="manager_css/addcar_manager.css" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+  </head>
+  <body>
+    <!-- Header start -->
+    <header id="header">
+      <div class="header">
+        <div class="container">
+          <div class="header-navbar">
+            <div class="header-logo">
+              <a href="index_manager.php" style="cursor: pointer"
+                ><img id="logo" src="../images/1.png" alt=""
+              /></a>
+              <div class="header-name">
+                <h1>Rent A Car</h1>
+              </div>
+            </div>
+            <div class="header-menu">
+              <ul>
+                <li><a href="edit_manager.php">Edit</a></li>
+                <li><a href="login_manager.php">Log In</a></li>
+                <li><a href="addcar_manager.php">Add Car</a></li>
+                <li><a href="users_manager.php">Users</a></li>
+                <li><a href="carlist.html">Car List</a></li>
+                <li id="lasthref">
+                  <a href="account_manager.php">Account</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Header Finish -->
+
+    <!-- Add Car -->
+    <section id="edit">
+      <div class="edit">
+        <div class="edit-container anime-top">
+          <div class="edit-row">
+            <h1
+              style="
+                color: white;
+                text-align: center;
+                font-size: 32px;
+                margin-bottom: 8px;
+              "
+            >
+              ADD CAR
+            </h1>
+            <div class="image">
+              <img src="../images/camera.png" alt="" />
+            </div>
+            <div class="description">
+              <div class="label">
+                <label for="1">Daily Price :</label>
+                <input type="text" id="1" />
+              </div>
+              <div class="label">
+                <label for="2">Number Of Days :</label>
+                <input type="text" id="2" />
+              </div>
+              <div class="label">
+                <label for="4">Segment :</label>
+                <input type="text" id="4" />
+              </div>
+              <div class="label">
+                <label for="5">Model :</label>
+                <input type="text" id="5" />
+              </div>
+              <div class="label">
+                <label for="6">Total :</label>
+                <input type="text" id="6" />
+              </div>
+              <br />
+              <div class="label-radio">
+                <label for="3">Additional Fees :</label>
+                <div class="radio-type">
+                  <input
+                    type="radio"
+                    value="BabySeat"
+                    id="BabySeat"
+                    style="cursor: pointer"
+                  />
+                  <label for="BabySeat">Baby Seat (8tl for each day)</label>
+                  <input
+                    type="radio"
+                    value="RoadMap"
+                    id="RoadMap"
+                    style="cursor: pointer"
+                  />
+                  <label for="RoadMap">Road Map (free)</label>
+                  <input
+                    type="radio"
+                    value="CAS"
+                    id="CAS"
+                    style="cursor: pointer"
+                  />
+                  <label for="CAS">CAS (20tl for rent)</label>
+                </div>
+              </div>
+              <br />
+              <div class="icon">
+                <img src="../images/wgroup.png" alt="" />
+                <input type="text" placeholder="Number Of Person" />
+                <img src="../images/wpetrol.png" alt="" />
+                <select name="edit" id="3">
+                  <option value="diesel">Diesel</option>
+                  <option value="fuel">Fuel</option>
+                </select>
+                <img src="../images/wsetting.png" alt="" />
+                <select name="edit" id="3">
+                  <option value="manuel">Manuel</option>
+                  <option value="automatic">Automatic</option>
+                </select>
+              </div>
+              <div class="submit">
+                <form action="index_manager.php">
+                  <input type="submit" value="Add Car" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script>
+    window.sr = ScrollReveal();
+    sr.reveal(".anime-top", {
+      origin: "top",
+      duration: 1000,
+      distance: "25rem",
+      delay: 300,
+    });
+  </script>
+</html>

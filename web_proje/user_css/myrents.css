@@ -96,7 +96,6 @@ p {
   background-color: #787a91;
 }
 
-/* Sign Up */
 body {
   background-image: url(../images/roadd.jpg);
   background-position: center;
@@ -107,74 +106,7 @@ body {
   box-sizing: border-box;
 }
 
-.signup {
-  margin-top: 40px;
-  margin-bottom: 150px;
-  width: 300px;
-  padding: 30px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-}
-
-.signup-content {
-  justify-content: space-around;
-}
-
-.signup h1 {
-  color: white;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-family: "Raleway", sans-serif;
-}
-
-.signup input[type="text"],
-.signup input[type="email"],
-.signup input[type="password"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 3px solid #0f4c75;
-  padding: 14px 10px;
-  width: 220px;
-  outline: none;
-  color: white;
-  border-radius: 15px;
-  transition: 0.25px;
-}
-input::placeholder {
-  color: white;
-}
-
-.signup input[type="submit"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 3px solid #0f4c75;
-  padding: 10px 8px;
-  width: 90px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25px;
-  cursor: pointer;
-}
-
-.signup input[type="submit"]:hover {
-  background: #0f4c75;
-}
-
-.signuplink a {
-  color: white;
-  font-family: "Raleway", sans-serif;
-}
+/* Account */
 
 /* Footer */
 .footer-container {
@@ -236,54 +168,4 @@ footer {
 
 .footer-col ul li a:hover {
   padding-left: 10px;
-}
-
-/* Responsive */
-/* Header Responsive */
-@media only screen and (max-width: 935px) {
-  .header-menu li {
-    margin-left: 10px;
-  }
-}
-@media only screen and (max-width: 831px) {
-  .header-navbar {
-    display: flex;
-    flex-direction: column;
-    padding: 120px 0;
-    align-items: center;
-    justify-content: center;
-  }
-}
-@media only screen and (max-width: 831px) {
-  .header-menu a {
-    font-size: 13px;
-  }
-
-  .signup {
-    margin-top: 250px;
-  }
-}
-
-/* Footer Responsive */
-@media only screen and (max-width: 790px) {
-  .footer {
-    padding: 120px;
-  }
-
-  .footer-row {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    float: left;
-  }
-
-  .footer-col {
-    margin-top: 30px;
-  }
-}
-
-@media only screen and (max-width: 590px) {
-  .footer-row {
-    float: left;
-  }
 }

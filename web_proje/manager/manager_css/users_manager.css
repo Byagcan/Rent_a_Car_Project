@@ -106,7 +106,7 @@ body {
   background-color: #787a91;
 }
 
-/* Feedbacks */
+/* Users */
 .feedback-container {
   margin-bottom: 0;
   display: grid;
@@ -159,33 +159,15 @@ body {
   margin: 20px 0;
 }
 
-.star {
-  padding: 20px 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.boxsubmit {
+  margin-top: 20px;
 }
 
-.star img {
-  width: 20px;
-  height: 20px;
-}
-
-.feedback {
-  margin-top: 2px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.feedback input {
+.boxsubmit button {
+  padding: 8px;
   border-radius: 3px;
-  padding: 10px 15px;
   cursor: pointer;
-  color: black;
 }
-
 /* Responsive */
 /* Header Responsive */
 

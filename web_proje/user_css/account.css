@@ -150,10 +150,27 @@ input[type="date"]:hover {
   display: block;
 }
 
-.email {
+.myfeedback {
+  margin-top: 5px;
   display: block;
 }
 
+.myfeedback textarea {
+  width: 233px;
+  height: 73px;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  color: white;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #eaeaea;
+  border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #596971;
+}
 .birthdate {
   display: block;
 }
@@ -200,19 +217,26 @@ h3 {
 }
 
 .image {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 }
 
 .general {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
+}
+
+.myrents {
+  margin-bottom: 50px;
 }
 
 .changepassword {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .logout {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 /* Footer */
