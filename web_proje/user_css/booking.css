@@ -131,7 +131,10 @@ body {
   align-items: center;
   border-bottom: 3px solid white;
 }
-
+.carimage {
+  width: 615px;
+  height: 292px;
+}
 .carimg img {
   margin-bottom: 50px;
   border: 2px solid #cccccc;
@@ -146,10 +149,38 @@ body {
 }
 
 .booking-button {
-  margin-top: 50px;
+  margin-top: 20px;
   margin-right: 40px;
 }
 
+.booking-button input {
+  padding: 6px 10px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+}
+.descriptiontext {
+  margin-right: 35px;
+}
+.descriptiontext textarea {
+  width: 300px;
+  height: 73px;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #eaeaea;
+  border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #596971;
+}
 .price input[type="text"] {
   background-color: rgba(0, 0, 0, 0);
   padding: 7px;
@@ -179,11 +210,6 @@ select {
   background-color: rgba(0, 0, 0, 0);
   border: 2px solid white;
   color: white;
-}
-
-.booking option {
-  color: white;
-  background-color: black;
 }
 
 .p-information {

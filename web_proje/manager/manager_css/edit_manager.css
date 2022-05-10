@@ -109,15 +109,39 @@ body {
 
 /* Edit */
 .edit {
-  margin-top: 100px;
-  width: 950px;
+  margin-top: 190px;
+  width: 900px;
   height: max-content;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.702);
   text-align: center;
+}
+.image {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+}
+.edit-row {
+  margin-bottom: 80px;
+}
+.image input[type="submit"] {
+  position: absolute;
+  top: 90%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .image img {
@@ -125,6 +149,23 @@ body {
   height: 270px;
   border: 2px solid white;
   border-radius: 3px;
+}
+input[type="file"] {
+  position: absolute;
+  top: 90%;
+  left: 39%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  cursor: pointer !important;
+}
+input[type="file"]::-webkit-file-upload-button {
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .description input[type="text"] {
@@ -135,17 +176,27 @@ body {
   cursor: pointer;
 }
 .description input[type="submit"] {
-  padding: 8px 15px;
+  padding: 10px 17px;
   background-color: rgba(255, 255, 255, 0.73);
   border-radius: 3px;
   margin-top: 12px;
+  margin-bottom: 15px;
   cursor: pointer;
+}
+.descriptiontext textarea {
+  width: 550px;
+  height: 73px;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  color: white;
+  text-align: center;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  padding: 8px 120px;
+  padding: 8px 80px;
 }
 
 .label label {
@@ -183,6 +234,11 @@ select {
 }
 
 .radio-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.submit {
   display: flex;
   justify-content: center;
   align-items: center;

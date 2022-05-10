@@ -111,7 +111,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
   padding: 120px;
 }
 
@@ -144,14 +144,16 @@ input[type="date"]:hover {
 
 .name {
   display: inline-block;
+  margin-top: 20px;
 }
 
 .phonenumber {
   display: block;
+  margin-top: 20px;
 }
 
 .myfeedback {
-  margin-top: 5px;
+  margin-top: 20px;
   display: block;
 }
 
@@ -162,6 +164,7 @@ input[type="date"]:hover {
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid white;
   color: white;
+  text-align: center;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -173,10 +176,12 @@ input[type="date"]:hover {
 }
 .birthdate {
   display: block;
+  margin-top: 20px;
 }
 
 .tc {
   display: block;
+  margin-top: 20px;
 }
 
 .submit {
@@ -194,6 +199,7 @@ input[type="date"]:hover {
 h3 {
   color: white;
   margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .links input[type="submit"] {
@@ -214,6 +220,18 @@ h3 {
 .image img {
   height: 120px;
   width: 120px;
+  border-radius: 50%;
+}
+
+input[type="file"] {
+  cursor: pointer !important;
+}
+input[type="file"]::-webkit-file-upload-button {
+  background: rgba(0, 0, 0, 0);
+  border: 0;
+  padding: 12px 25px;
+  cursor: pointer;
+  color: #fff;
 }
 
 .image {

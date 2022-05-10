@@ -1,5 +1,13 @@
 <?php
 include('feedback.php');
+include('connect.php');
+if (isset($_GET["carid"])) {
+  $id = $_GET["carid"];
+  $result = mysqli_query($connection, "SELECT price,`description`,car_image.image FROM car_details inner join car_image on 
+  car_details.carimageid=car_image.carimageid WHERE carid=$id");
+  $row = mysqli_fetch_assoc($result);
+} else
+  header("location:carlist.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,26 +58,20 @@ include('feedback.php');
           <div class="booking-row">
             <div class="booking-column">
               <div class="carimg">
-                <img src="images/cl6.png" alt="">
+                <img src="images/<?php echo $row['image'] ?>" alt="">
               </div>
               <div class="price">
                 <div class="1">
-                  <input type="text" placeholder="Daily Price : 100tl">
-                </div>
-                <div class="2">
-                  <input type="text" placeholder="Number Of Days : 1">
-                </div>
-                <div class="3">
-                  <input type="text" placeholder="Additional Fees : 0tl">
+                  <input type="text" placeholder="Daily Price : <?php echo $row['price'] ?>">
                 </div>
                 <div class="4">
                   <input type="text" placeholder="Total : 100tl">
                 </div>
+                <div class="descriptiontext">
+                  <textarea id="area" name="tarea" rows="4" cols="100">"Description"<?php echo "\n" . $row['description'] ?></textarea>
+                </div>
                 <div class="booking-button">
-                  <select name="booking-pay" id="booking-pay" onchange="window.location=this.value">
-                    <option value="Cash">Cash</option>
-                    <option value="credit-card.php">Credit Card</option>
-                  </select>
+                  <input type="submit" name="bookingsubmit" value="Booking">
                 </div>
               </div>
             </div>

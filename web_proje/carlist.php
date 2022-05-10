@@ -1,5 +1,13 @@
 <?php
 include('feedback.php');
+include('connect.php');
+
+$result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,`status`,price FROM car_details 
+inner join car_brand on car_details.brandid=car_brand.brandid 
+inner join car_name on car_details.carnameid=car_name.carnameid 
+inner join car_segment on car_details.segmentid=car_segment.segmentid
+inner join car_image on car_details.carimageid=car_image.carimageid");
+
 ?>
 
 <!DOCTYPE html>
@@ -110,29 +118,36 @@ include('feedback.php');
             <br />
           </div>
           <div class="carlist-row">
-            <div class="carlist-column column1">
-              <div class="carlist-image">
-                <img id="climage" src="images/cl6.png" alt="" />
+            <?php
+            while ($car = mysqli_fetch_assoc($result)) {
+            ?>
+              <div class="carlist-column column1">
+                <div class="carlist-image">
+                  <img id="climage" src="images/<?php echo $car['image'] ?>" alt="" />
+                </div>
+                <h2><?php echo $car['brandname'] ?></h2>
+                <h2><?php echo $car['carname'] ?></h2>
+                <h3 style="text-align: center"><?php echo $car['carsegment'] ?></h3>
+                <div class="description">
+                  <img src="images/group.png" alt="" />
+                  <img src="images/petrol.png" alt="" />
+                  <img src="images/setting.png" alt="" />
+                </div>
+                <div class="imgp">
+                  <h4>x<?php echo $car['capacity'] ?></h4>
+                  <h4><?php echo $car['type'] ?></h4>
+                  <h4><?php echo $car['gears'] ?></h4>
+                </div>
+                <div class="button">
+
+                  <a href="booking.php?carid=<?php echo $car["carid"] ?>"><input type="submit" value="Booking" /></a>
+
+
+                </div>
               </div>
-              <h2>A</h2>
-              <h3 style="text-align: center">A Segment</h3>
-              <div class="description">
-                <img src="images/group.png" alt="" />
-                <img src="images/petrol.png" alt="" />
-                <img src="images/setting.png" alt="" />
-              </div>
-              <div class="imgp">
-                <h4>x5</h4>
-                <h4>diesel</h4>
-                <h4>manuel</h4>
-              </div>
-              <div class="button">
-                <form action="booking.php">
-                  <input type="submit" value="Booking" />
-                </form>
-              </div>
-            </div>
-            <div class="carlist-column column2">
+            <?php } ?>
+
+            <!-- <div class="carlist-column column2">
               <div class="carlist-image">
                 <img id="climage" src="images/cl8.png" alt="" />
               </div>
@@ -241,7 +256,7 @@ include('feedback.php');
                   <input type="submit" value="Booking" />
                 </form>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

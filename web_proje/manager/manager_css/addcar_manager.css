@@ -106,24 +106,82 @@ body {
   background-color: #787a91;
 }
 
-/* Edit */
-.edit {
-  margin-top: 200px;
+/* Add */
+.add {
+  margin-top: 150px;
   width: 900px;
   height: max-content;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.702);
   text-align: center;
 }
-
+.image {
+  width: 500px;
+  height: 290px;
+  margin-left: 200px;
+  margin-bottom: 15px;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+}
+.image input[type="submit"] {
+  position: absolute;
+  top: 90%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 .image img {
   width: 400px;
-  border: 2px solid white;
+  height: 250px;
   border-radius: 3px;
-  background-color: #eeeeee;
+}
+input[type="file"] {
+  position: absolute;
+  top: 90%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  cursor: pointer !important;
+}
+input[type="file"]::-webkit-file-upload-button {
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.descriptiontext textarea {
+  width: 550px;
+  height: 73px;
+  overflow-y: scroll;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #eaeaea;
+  border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #596971;
 }
 
 .description input[type="text"] {
@@ -144,16 +202,11 @@ body {
 .label {
   display: flex;
   flex-direction: column;
-  padding: 8px 120px;
+  padding: 8px 170px;
 }
 
 .label label {
   color: #eeeeee;
-}
-
-.label-radio label {
-  color: #eeeeee;
-  margin-right: 15px;
 }
 
 .icon {
@@ -181,12 +234,6 @@ select {
   margin-right: 20px;
 }
 
-.radio-type {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Responsive */
 
 /* Header Responsive */
@@ -204,7 +251,7 @@ select {
     justify-content: center;
   }
 
-  .edit {
+  .add {
     margin-top: 300px;
   }
 }
@@ -216,7 +263,7 @@ select {
 }
 
 @media screen and (max-width: 970px) {
-  .edit {
+  .add {
     width: 700px;
   }
 
@@ -226,7 +273,7 @@ select {
 }
 
 @media screen and (max-width: 726px) {
-  .edit {
+  .add {
     width: 550px;
   }
 
@@ -236,7 +283,7 @@ select {
 }
 
 @media screen and (max-width: 568px) {
-  .edit {
+  .add {
     width: 450px;
   }
   .label-radio label {

@@ -3,6 +3,7 @@ include('../connect.php');
 if (isset($_GET["userid"])) {
     $id = $_GET["userid"];
     $result = mysqli_query($connection, "SELECT * FROM user_details WHERE userid=$id");
+    $result2 = mysqli_query($connection, "SELECT * FROM user_feedbacks inner join user_details on user_details.userid=user_feedbacks.userid WHERE user_feedbacks.userid='$id'");
     $row = mysqli_fetch_assoc($result);
 } else
     header("location:users_manager.php");
@@ -89,7 +90,9 @@ if (isset($_GET["userid"])) {
                 </div>
                 <div class="feedback">
                     <h3 style="color: white;">Feedback</h3>
-                    <textarea id="area" name="area" rows="6" cols="100"></textarea>
+                    <textarea id="area" name="area" rows="6" cols="100"><?php while ($row2 = mysqli_fetch_assoc($result2)) {
+                                                                            echo  $row2['feedback'] . " (" . $row2['date'] . ")" . "\n";
+                                                                        } ?></textarea>
                 </div>
                 <div class="rents">
                     <h3 style="color: white;">Rents</h3>

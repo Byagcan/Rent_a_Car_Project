@@ -1,7 +1,5 @@
 <?php
-include('../connect.php');
-
-$result = mysqli_query($connection, "SELECT * FROM user_details");
+include('../web_proje/feedback.php');
 
 ?>
 <!DOCTYPE html>
@@ -45,29 +43,50 @@ $result = mysqli_query($connection, "SELECT * FROM user_details");
 
     <!-- My Rents Start -->
     <div class="myrents-container">
+        <h1>MY RENTS</h1>
+        <div class="box">
+            <div class="myrents">
 
-        <?php
-        // while ($user = mysqli_fetch_assoc($result)) {
-        ?>
-        <!-- <div class="box">
-        <div class="rents">
-          <p>User <?php //echo $rent['userid'] 
-                    ?></p>
+                <div class="image">
+                    <img id="climage" src="images/cl6.png" alt="" />
+                </div>
+                <h2>A</h2>
+                <h3 style="text-align: center">A Segment</h3>
+                <div class="description">
+                    <h4>Purchase Date:2001-02-02</h4>
+                    <h4>Return Date:2001-02-02</h4>
+                    <h4>Total Price:1587tl</h4>
+
+                </div>
+                <div class="button">
+                    <form action="#">
+                        <input type="submit" value="Cancel" name="cancel" />
+                        <input type="submit" value="Update" name="update" />
+                    </form>
+                </div>
+            </div>
+
         </div>
-        <div class="user_photo">
-          <img class="" src="../images/pic-1.png" alt="" />
+        <h1>MY PAST RENTS</h1>
+        <div class="box">
+            <div class="mypastrents">
+                <div class="myrents">
+
+                    <div class="image">
+                        <img id="climage" src="images/cl6.png" alt="" />
+                    </div>
+                    <h2>A</h2>
+                    <h3 style="text-align: center">A Segment</h3>
+                    <div class="description">
+                        <h4>Purchase Date:2001-02-02</h4>
+                        <h4>Return Date:2001-02-02</h4>
+                        <h4>Total Price:1587tl</h4>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="details">
-          <p><span style="color: black">Name:</span> <?php echo $user['name_surname'] ?></p>
-          <p><span style="color: black">Mail:</span> <?php echo $user['email'] ?> </p>
-          <p><span style="color: black">Phone Number:</span><?php echo $user['phone_number'] ?></p>
-        </div>
-        <div class="boxsubmit">
-          <a href="userprofile_manager.php?userid=<?php echo $user["userid"] ?>">Show Information</a>
-        </div> -->
     </div>
-    <?php //} 
-    ?>
 
 
     </div>

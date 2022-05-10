@@ -5,6 +5,7 @@ if (!empty($_SESSION["email"])) {
   $email = $_SESSION["email"];
   $result = mysqli_query($connection, "SELECT * FROM user_details WHERE email='$email'");
   $row = mysqli_fetch_assoc($result);
+  $result2 = mysqli_query($connection, "SELECT * FROM user_feedbacks inner join user_details on user_details.userid=user_feedbacks.userid WHERE user_details.email='$email'");
 } else {
   header("Location:log_ın.php");
 }
@@ -59,8 +60,15 @@ if (!empty($_SESSION["email"])) {
           <div class="row">
             <div class="column links">
               <div class="image">
-                <img src="images/user.png" alt="" />
+                <img src="images/<?php echo $row['image'] ?>" alt="" />
+                <br>
                 <p style="color: white; font-size: small;"><?php echo $row['email'] ?></p>
+                <br>
+                <form action="addaccountphoto.php" method="post" enctype="multipart/form-data">
+                  <input type="file" name="file" value="">
+                  <input type="submit" name="addphoto" value="Add Photo">
+                </form>
+
               </div>
               <div class="general">
                 <form action="account.php">
@@ -88,27 +96,30 @@ if (!empty($_SESSION["email"])) {
                 <form action="account.php" method="post">
                   <div class="name">
                     <h3>Name Surname</h3>
-                    <br />
+
                     <input type="text" value="<?php echo $row['name_surname'] ?>" name="namesurname" />
                   </div>
                   <div class="phonenumber">
                     <h3>Phone Number</h3>
-                    <br />
+
                     <input type="text" value="<?php echo $row['phone_number'] ?>" name="phonenumber" />
                   </div>
                   <div class="birthdate">
                     <h3>Birthdate</h3>
-                    <br />
+
                     <input type="text" name="birthdate" value="<?php echo $row['birthdate'] ?>" />
                   </div>
                   <div class="tc">
                     <h3>TC</h3>
-                    <br />
+
                     <input type="text" name="tc" value="<?php echo $row['personal_id'] ?>" />
                   </div>
                   <div class="myfeedback">
                     <h3>My Feedback</h3>
-                    <textarea id="area" name="area" rows="4" cols="100"><?php echo $row['feedback'] ?></textarea>
+                    <textarea id="area" name="area" rows="4" cols="100"><?php while ($row2 = mysqli_fetch_assoc($result2)) {
+                                                                          echo  $row2['feedback'] . " (" . $row2['date'] . ")" . "\n";
+                                                                        }
+                                                                        ?></textarea>
                   </div>
                   <div class="submit">
                     <input type="submit" value="submit" id="submit" name="save" />
@@ -118,9 +129,11 @@ if (!empty($_SESSION["email"])) {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
+
 
   <!-- Account Finish -->
 
@@ -192,6 +205,7 @@ if (isset($_POST['save'])) {
   $phonenumber = $_POST['phonenumber'];
   $birthdate = $_POST['birthdate'];
   $feedbackk = $_POST['area'];
+  $id = $row['userid'];
   $tc = $_POST['tc'];
   $email = $row['email'];
 
@@ -207,15 +221,12 @@ if (isset($_POST['save'])) {
   if (!($_POST['tc'] == $row['personal_id'])) {
     $result = mysqli_query($connection, "UPDATE user_details SET  personal_id='$tc'  where email='$email'");
   }
-  if (!($_POST['area'] == $row['feedback'])) {
-    $result = mysqli_query($connection, "UPDATE user_details SET  feedback='$feedbackk'  where email='$email'");
-    echo "<script type='text/javascript'>window.location.href='account.php';</script>";
-  }
 }
 if (isset($_POST['feedbacks'])) {
   $feedback = $_POST['feedback'];
-  $email = $row['email'];
-  $result = mysqli_query($connection, "UPDATE user_details SET  feedback='$feedback'  where email='$email'");
+  $id = $row['userid'];
+  $date = date("Y-m-d");
+  $result = mysqli_query($connection, "INSERT INTO user_feedbacks (userid, feedback,date) VALUES ($id, '$feedback','$date')");
   echo "<script type='text/javascript'>window.location.href='account.php';</script>";
 }
 $connection->close();

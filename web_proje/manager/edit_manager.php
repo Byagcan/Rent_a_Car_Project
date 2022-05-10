@@ -56,60 +56,58 @@
           </h1>
           <div class="image">
             <img src="../images/cl6.png" alt="" />
+            <form action="addphoto.php" method="post" enctype="multipart/form-data">
+              <input type="file" name="file" value="">
+              <input type="submit" name="addphoto" value="Edit Photo">
+            </form>
+          </div>
+          <div class="descriptiontext">
+            <h4 style="color: white;">Description</h4>
+            <textarea id="area" name="area" rows="4" cols="100"></textarea>
           </div>
           <div class="description">
             <div class="label">
-              <label for="1">Daily Price :</label>
-              <input type="text" id="1" />
-            </div>
-            <div class="label">
-              <label for="4">Segment :</label>
-              <input type="text" id="4" />
-            </div>
-            <div class="label">
-              <label for="5">Model :</label>
-              <input type="text" id="5" />
-            </div>
-            <div class="label">
-              <label for="6">Total :</label>
-              <input type="text" id="6" />
-            </div>
-            <br />
-            <div class="label-radio">
-              <label for="3">Additional Fees :</label>
-              <div class="radio-type">
-                <input type="radio" value="BabySeat" id="BabySeat" style="cursor: pointer" />
-                <label for="BabySeat">Baby Seat (8tl for each day)</label>
-                <input type="radio" value="RoadMap" id="RoadMap" style="cursor: pointer" />
-                <label for="RoadMap">Road Map (free)</label>
-                <input type="radio" value="CAS" id="CAS" style="cursor: pointer" />
-                <label for="CAS">CAS (20tl for rent)</label>
+              <div class="label">
+                <label for="1">Brand :</label>
+                <input type="text" id="1" />
               </div>
-            </div>
-            <br />
-            <div class="icon">
-              <img src="../images/wgroup.png" alt="" />
-              <input type="text" placeholder="Number Of Person" />
-              <img src="../images/wpetrol.png" alt="" />
-              <select name="edit" id="3">
-                <option value="diesel">Diesel</option>
-                <option value="fuel">Fuel</option>
-              </select>
-              <img src="../images/wsetting.png" alt="" />
-              <select name="edit" id="3">
-                <option value="manuel">Manuel</option>
-                <option value="automatic">Automatic</option>
-              </select>
-            </div>
-            <div class="submit">
-              <form action="index_manager.php">
-                <input type="submit" value="Edit" />
-              </form>
+              <div class="label">
+                <label for="3">Name :</label>
+                <input type="text" id="3" />
+              </div>
+              <div class="label">
+                <label for="2">Segment :</label>
+                <input type="text" id="2" />
+              </div>
+              <div class="label">
+                <label for="4">Daily Price :</label>
+                <input type="text" id="4" />
+              </div>
+              <br />
+              <div class="icon">
+                <img src="../images/wgroup.png" alt="" />
+                <input type="text" placeholder="Number Of Person" />
+                <img src="../images/wpetrol.png" alt="" />
+                <select name="edit" id="3">
+                  <option value="diesel">Diesel</option>
+                  <option value="fuel">Fuel</option>
+                </select>
+                <img src="../images/wsetting.png" alt="" />
+                <select name="edit" id="3">
+                  <option value="manuel">Manuel</option>
+                  <option value="automatic">Automatic</option>
+                </select>
+              </div>
+              <div class="submit">
+                <form action="index_manager.php">
+                  <input type="submit" value="Edit" />
+                  <input type="submit" value="Delete" />
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 </body>
 <script>
