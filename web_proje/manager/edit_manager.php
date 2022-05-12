@@ -1,3 +1,29 @@
+<?php
+session_start();
+include("../connect.php");
+//if (!empty($_SESSION["email"])) {
+//$email = $_SESSION["email"];
+if (isset($_GET["carid"])) {
+  $_SESSION['carid'] = $_GET["carid"];
+
+  $id = $_GET["carid"];
+  $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,`status`,price FROM car_details 
+inner join car_brand on car_details.brandid=car_brand.brandid 
+inner join car_name on car_details.carnameid=car_name.carnameid 
+inner join car_segment on car_details.segmentid=car_segment.segmentid
+inner join car_image on car_details.carimageid=car_image.carimageid WHERE carid=$id");
+  $row = mysqli_fetch_assoc($result);
+  $_SESSION['type'] = $row['type'];
+  $_SESSION['gears'] = $row['gears'];
+} else {
+  //header("location:index_manager.php");
+}
+
+//} else {
+// header("Location:log_ın.php");
+//}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +50,7 @@
           </div>
           <div class="header-menu">
             <ul>
-              <li><a href="edit_manager.php">Edit</a></li>
+              <li><a href="index_manager.php">Home</a></li>
               <li><a href="login_manager.php">Log In</a></li>
               <li><a href="addcar_manager.php">Add Car</a></li>
               <li><a href="users_manager.php">Users</a></li>
@@ -55,57 +81,61 @@
             EDIT
           </h1>
           <div class="image">
-            <img src="../images/cl6.png" alt="" />
-            <form action="addphoto.php" method="post" enctype="multipart/form-data">
+            <img src="../images/<?php echo $row['image'] ?>" alt="" />
+            <form action="edit_manager.php" method="post" enctype="multipart/form-data">
               <input type="file" name="file" value="">
-              <input type="submit" name="addphoto" value="Edit Photo">
+              <input type="submit" name="editphoto" value="Edit Photo">
             </form>
           </div>
-          <div class="descriptiontext">
-            <h4 style="color: white;">Description</h4>
-            <textarea id="area" name="area" rows="4" cols="100"></textarea>
-          </div>
-          <div class="description">
-            <div class="label">
+          <form action="edit_manager.php" method="post">
+            <div class="descriptiontext">
+              <H4 style="color:white ;">Description</H4>
+              <textarea id="area" name="tarea" rows="4" cols="100"><?php echo "\n" . $row['description'] ?></textarea>
+            </div>
+            <div class="description">
               <div class="label">
-                <label for="1">Brand :</label>
-                <input type="text" id="1" />
-              </div>
-              <div class="label">
-                <label for="3">Name :</label>
-                <input type="text" id="3" />
-              </div>
-              <div class="label">
-                <label for="2">Segment :</label>
-                <input type="text" id="2" />
-              </div>
-              <div class="label">
-                <label for="4">Daily Price :</label>
-                <input type="text" id="4" />
-              </div>
-              <br />
-              <div class="icon">
-                <img src="../images/wgroup.png" alt="" />
-                <input type="text" placeholder="Number Of Person" />
-                <img src="../images/wpetrol.png" alt="" />
-                <select name="edit" id="3">
-                  <option value="diesel">Diesel</option>
-                  <option value="fuel">Fuel</option>
-                </select>
-                <img src="../images/wsetting.png" alt="" />
-                <select name="edit" id="3">
-                  <option value="manuel">Manuel</option>
-                  <option value="automatic">Automatic</option>
-                </select>
-              </div>
-              <div class="submit">
-                <form action="index_manager.php">
-                  <input type="submit" value="Edit" />
-                  <input type="submit" value="Delete" />
-                </form>
+                <div class="label">
+                  <label for="1">Brand :</label>
+                  <input type="text" name="brand" id="1" value="<?php echo $row['brandname'] ?>" />
+                </div>
+                <div class="label">
+                  <label for="3">Name :</label>
+                  <input type="text" name="name" id="3" value="<?php echo $row['carname'] ?>" />
+                </div>
+                <div class="label">
+                  <label for="2">Segment :</label>
+                  <input type="text" name="segment" id="2" value="<?php echo $row['carsegment'] ?>" />
+                </div>
+                <div class="label">
+                  <label for="4">Daily Price :</label>
+                  <input type="text" name="price" id="4" value="<?php echo $row['price'] ?>" />
+                </div>
+                <br />
+                <div class="icon">
+                  <img src="../images/wgroup.png" alt="" />
+                  <input type="text" name="capacity" placeholder="Number Of Person" value="<?php echo $row['capacity'] ?>" />
+                  <img src="../images/wpetrol.png" alt="" />
+                  <select name="type" id="3">
+                    <option value="" selected="selected"><?php echo $row['type'] ?></option>
+                    <option value="diesel">Diesel</option>
+                    <option value="fuel">Fuel</option>
+                  </select>
+                  <img src="../images/wsetting.png" alt="" />
+                  <select name="gears" id="3">
+                    <option value="" selected="selected"><?php echo $row['gears'] ?></option>
+                    <option value="manuel">Manuel</option>
+                    <option value="automatic">Automatic</option>
+                  </select>
+                </div>
+                <div class="submit">
+
+                  <input type="submit" value="Edit" name="editcar" />
+                  <input type="submit" value="Delete" name="deletecar" />
+
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
   </section>
@@ -121,3 +151,78 @@
 </script>
 
 </html>
+<?php
+if (isset($_POST['editphoto'])) {
+  $control = getimagesize($_FILES['file']['tmp_name']);
+  $filename = $_FILES['file']['tmp_name'];
+  $imagename = $_FILES['file']['name'];
+  $imagesize = $_FILES['file']['size'];
+  if ($control == TRUE) {
+    if ($imagesize < 1024 * 512) {
+      $image_ex = pathinfo($imagename, PATHINFO_EXTENSION);
+      $exlower = strtolower($image_ex);
+      $imagetype = array("png", "jpg", "jpeg");
+      if (in_array($exlower, $imagetype)) {
+        $newimagename = uniqid("image-", TRUE) . "." . $image_ex;
+        $imageaddress = '../images/' . $newimagename;
+        move_uploaded_file($filename, $imageaddress);
+        $result2 = mysqli_query($connection, "UPDATE car_image SET `image`='$newimagename'");
+        $result3 = mysqli_query($connection, "Select * from car_image where image='$newimagename'");
+        $imagerow = mysqli_fetch_assoc($result3);
+        $_SESSION['imageid'] = $imagerow['carimageid'];
+        echo "<script type='text/javascript'>window.location.href='index_manager.php';</script>";
+      } else {
+        echo "Image Type Must Be png,jpg or jpeg";
+      }
+    } else {
+      echo "İmage Size Is Too Big.";
+    }
+  } else {
+    echo "It Is Not Image";
+  }
+}
+if (isset($_POST['editcar'])) {
+  $name = $_POST['name'];
+  $brand = $_POST['brand'];
+  $segment = $_POST['segment'];
+  $tarea = $_POST['tarea'];
+  $capacity = $_POST['capacity'];
+  $price = $_POST['price'];
+  if ($_POST) {
+    $type = $_POST['type'];
+    if ($type == 'diesel') {
+      $typeoption = 'diesel';
+    }
+    if ($type == 'fuel') {
+      $typeoption = 'fuel';
+    }
+    if ($type == '') {
+      $typeoption = $_SESSION['type'];
+    }
+    $gears = $_POST['gears'];
+    if ($gears == 'manuel') {
+      $gearsoption = 'manuel';
+    }
+    if ($gears == 'automatic') {
+      $gearsoption = 'automatic';
+    }
+    if ($gears == '') {
+      $gearsoption = $_SESSION['gears'];
+    }
+  }
+  $updatecarsegment = mysqli_query($connection, "UPDATE car_name SET carname='$name'");
+  $selectcarname = mysqli_query($connection, "SELECT * FROM car_name");
+  $carnameid = mysqli_fetch_assoc($selectcarname);
+  $updatecarsegment = mysqli_query($connection, "UPDATE car_segment SET carsegment='$segment'");
+  $selectcarsegment = mysqli_query($connection, "Select * from car_segment where carsegment='$segment'");
+  $segmentid = mysqli_fetch_assoc($selectcarsegment);
+  $updatecarbrand = mysqli_query($connection, "UPDATE car_brand SET brandname='$brand'");
+  $selectcarbrand = mysqli_query($connection, "Select * from car_brand where brandname='$brand'");
+  $brandid = mysqli_fetch_assoc($selectcarbrand);
+  $update = mysqli_query($connection, "UPDATE car_details SET brandid='$brandid[brandid]',segmentid='$segmentid[segmentid]', `description`='$tarea', capacity='$capacity',`type`='$typeoption', gears='$gearsoption', price='$price' where carid='$_SESSION[carid]'");
+  echo "<script type='text/javascript'>window.location.href='index_manager.php';</script>";
+  echo "<script> alert('Successfully') </script>";
+}
+$connection->close();
+
+?>

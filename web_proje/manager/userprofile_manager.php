@@ -33,7 +33,7 @@ if (isset($_GET["userid"])) {
                     </div>
                     <div class="header-menu">
                         <ul>
-                            <li><a href="edit_manager.php">Edit</a></li>
+                            <li><a href="index_manager.php">Home</a></li>
                             <li><a href="login_manager.php">Log In</a></li>
                             <li><a href="addcar_manager.php">Add Car</a></li>
                             <li><a href="users_manager.php">Users</a></li>
