@@ -1,5 +1,5 @@
 use web_project;
-CREATE TABLE `user_details` (
+CREATE TABLE `admin_details` (
   `userid` int NOT NULL AUTO_INCREMENT,
   `name_surname` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,

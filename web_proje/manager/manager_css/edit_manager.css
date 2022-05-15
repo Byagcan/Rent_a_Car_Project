@@ -109,7 +109,7 @@ body {
 
 /* Edit */
 .edit {
-  margin-top: 190px;
+  margin-top: 250px;
   width: 900px;
   height: max-content;
   position: absolute;
@@ -307,5 +307,48 @@ select {
 
   .icon img {
     margin-right: 5px;
+  }
+}
+/* Edit car Responsive */
+@media screen and (max-width: 973px) {
+  .edit-container {
+    width: 700px;
+  }
+
+  .image {
+    width: 300px;
+  }
+
+  .image input[type="submit"],
+  input[type="file"]::-webkit-file-upload-button {
+    padding: 8px 10px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 726px) {
+  .edit-row h1 {
+    margin-right: 130px;
+  }
+
+  .image {
+    margin-left: 140px;
+  }
+
+  .descriptiontext textarea {
+    width: 300px;
+    margin-right: 120px;
+  }
+
+  .description {
+    margin-right: 100px;
+  }
+
+  .icon {
+    margin-right: 60px;
+  }
+
+  .submit {
+    margin-right: 30px;
   }
 }

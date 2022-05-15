@@ -108,7 +108,7 @@ body {
 
 /* Add */
 .add {
-  margin-top: 150px;
+  margin-top: 190px;
   width: 900px;
   height: max-content;
   position: absolute;
@@ -242,7 +242,7 @@ select {
     margin-left: 5px;
   }
 }
-@media screen and (max-width: 787px) {
+@media screen and (max-width: 797px) {
   .header-navbar {
     display: flex;
     flex-direction: column;
@@ -252,7 +252,7 @@ select {
   }
 
   .add {
-    margin-top: 300px;
+    margin-top: 400px;
   }
 }
 
@@ -293,5 +293,49 @@ select {
 
   .icon img {
     margin-right: 5px;
+  }
+}
+
+/* Add car Responsive */
+@media screen and (max-width: 971px) {
+  .add-container {
+    width: 700px;
+  }
+
+  .image {
+    width: 300px;
+  }
+
+  .image input[type="submit"],
+  input[type="file"]::-webkit-file-upload-button {
+    padding: 8px 10px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 726px) {
+  .add-row h1 {
+    margin-right: 130px;
+  }
+
+  .image {
+    margin-left: 140px;
+  }
+
+  .descriptiontext textarea {
+    width: 300px;
+    margin-right: 120px;
+  }
+
+  .description {
+    margin-right: 100px;
+  }
+
+  .icon {
+    margin-right: 60px;
+  }
+
+  .submit {
+    margin-right: 30px;
   }
 }

@@ -48,12 +48,12 @@
         <div class="signup-content anime-top">
           <h1>SIGN UP</h1>
           <div class="form">
-            <form action="index_manager.php">
-              <input type="text" name="" placeholder="Enter your Name Surname" id="name" />
-              <input type="text" name="" placeholder="Enter your Email" id="email" />
-              <input type="password" name="" placeholder="Company password" id="password" />
-              <input type="password" name="" placeholder="Company password again" id="passwordagain" />
-              <input type="submit" name="" value="Sign Up" id="submit" />
+            <form action="signup_manager.php" method="post">
+              <input type="text" name="namesurname" placeholder="Enter your Name Surname" id="name" />
+              <input type="text" name="email" placeholder="Enter your Email" id="email" />
+              <input type="password" name="password" placeholder="Company password" id="password" />
+              <input type="password" name="passwordagain" placeholder="Company password again" id="passwordagain" />
+              <input type="submit" name="signup" value="Sign Up" id="submit" />
             </form>
           </div>
         </div>
@@ -74,3 +74,30 @@
 </script>
 
 </html>
+<?php
+include("../connect.php");
+//$_POST["namesurname"], $_POST["email"], $_POST["password"], $_POST["passwordagain"]
+if (isset($_POST['signup'])) {
+  $namesurname = $_POST["namesurname"];
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $date = date("Y-m-d");
+  $passwordagain = $_POST["passwordagain"];
+
+  if ($password === $passwordagain) {
+    $password = md5($password);
+    $sql = "INSERT INTO admin_details (name_surname, email, `password`, `registrationdate`,`role`)
+    VALUES ('$namesurname','$email','$password','$date','Admin')";
+
+    if ($connection->query($sql) === TRUE) {
+      echo "<script> alert('Registration successfully completed')</script>";
+      echo "<script type='text/javascript'>window.location.href='login_manager.php';</script>";
+    } else {
+      echo "<script> alert('Registration not be completed') </script>";
+    }
+    $connection->close();
+  } else {
+    echo "<script> alert('Password matching error') </script>";
+  }
+}
+?>

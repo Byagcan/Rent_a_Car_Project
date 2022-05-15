@@ -1,27 +1,25 @@
 <?php
 session_start();
 include("../connect.php");
-//if (!empty($_SESSION["email"])) {
-//$email = $_SESSION["email"];
 if (isset($_GET["carid"])) {
   $_SESSION['carid'] = $_GET["carid"];
-
   $id = $_GET["carid"];
-  $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,`status`,price FROM car_details 
+  $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,branch.branchname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,price FROM car_details 
 inner join car_brand on car_details.brandid=car_brand.brandid 
 inner join car_name on car_details.carnameid=car_name.carnameid 
 inner join car_segment on car_details.segmentid=car_segment.segmentid
-inner join car_image on car_details.carimageid=car_image.carimageid WHERE carid=$id");
+inner join car_image on car_details.carimageid=car_image.carimageid
+inner join branch on car_details.branchid=branch.branchid WHERE carid=$id");
   $row = mysqli_fetch_assoc($result);
   $_SESSION['type'] = $row['type'];
   $_SESSION['gears'] = $row['gears'];
+}
+if (!empty($_SESSION["email"])) {
+  $email = $_SESSION["email"];
 } else {
-  //header("location:index_manager.php");
+  header("Location:login_manager.php");
 }
 
-//} else {
-// header("Location:log_ın.php");
-//}
 
 ?>
 <!DOCTYPE html>
@@ -103,7 +101,11 @@ inner join car_image on car_details.carimageid=car_image.carimageid WHERE carid=
                   <input type="text" name="name" id="3" value="<?php echo $row['carname'] ?>" />
                 </div>
                 <div class="label">
-                  <label for="2">Segment :</label>
+                  <label for="3">Branch :(İstanbul/Antalya/Yalova/İzmir)</label>
+                  <input type="text" name="branch" id="3" value="<?php echo $row['branchname'] ?>" />
+                </div>
+                <div class="label">
+                  <label for="2">Segment :(A/B/C/D/F/G/S)</label>
                   <input type="text" name="segment" id="2" value="<?php echo $row['carsegment'] ?>" />
                 </div>
                 <div class="label">
@@ -181,9 +183,15 @@ if (isset($_POST['editphoto'])) {
     echo "It Is Not Image";
   }
 }
+if (isset($_POST['deletecar'])) {
+  $selectcarname = mysqli_query($connection, "DELETE FROM car_details where carid='$_SESSION[carid]' ");
+  echo "<script> alert('Successfully Deleted') </script>";
+  echo "<script type='text/javascript'>window.location.href='index_manager.php';</script>";
+}
 if (isset($_POST['editcar'])) {
   $name = $_POST['name'];
   $brand = $_POST['brand'];
+  $branch = $_POST['branch'];
   $segment = $_POST['segment'];
   $tarea = $_POST['tarea'];
   $capacity = $_POST['capacity'];
@@ -210,18 +218,25 @@ if (isset($_POST['editcar'])) {
       $gearsoption = $_SESSION['gears'];
     }
   }
-  $updatecarsegment = mysqli_query($connection, "UPDATE car_name SET carname='$name'");
-  $selectcarname = mysqli_query($connection, "SELECT * FROM car_name");
+  $selectcarname = mysqli_query($connection, "SELECT * FROM car_name inner join car_details on car_name.carnameid=car_details.carnameid where carid='$_SESSION[carid]' ");
   $carnameid = mysqli_fetch_assoc($selectcarname);
-  $updatecarsegment = mysqli_query($connection, "UPDATE car_segment SET carsegment='$segment'");
+  $updatecarname = mysqli_query($connection, "UPDATE car_name SET carname='$name' where carnameid='$carnameid[carnameid]'");
+
   $selectcarsegment = mysqli_query($connection, "Select * from car_segment where carsegment='$segment'");
   $segmentid = mysqli_fetch_assoc($selectcarsegment);
-  $updatecarbrand = mysqli_query($connection, "UPDATE car_brand SET brandname='$brand'");
-  $selectcarbrand = mysqli_query($connection, "Select * from car_brand where brandname='$brand'");
+  $updatecarsegment = mysqli_query($connection, "UPDATE car_details SET segmentid='$segmentid[segmentid]' where  carid='$_SESSION[carid]'");
+
+  $selectcarbrand = mysqli_query($connection, "Select * from car_brand inner join car_details on car_brand.brandid=car_details.brandid where carid='$_SESSION[carid]'");
   $brandid = mysqli_fetch_assoc($selectcarbrand);
-  $update = mysqli_query($connection, "UPDATE car_details SET brandid='$brandid[brandid]',segmentid='$segmentid[segmentid]', `description`='$tarea', capacity='$capacity',`type`='$typeoption', gears='$gearsoption', price='$price' where carid='$_SESSION[carid]'");
+  $updatecarbrand = mysqli_query($connection, "UPDATE car_brand SET brandname='$brand' where brandid='$brandid[brandid]'");
+
+  $selectbranch = mysqli_query($connection, "Select * from branch  where branchname='$branch'");
+  $branchid = mysqli_fetch_assoc($selectbranch);
+  $updatebranch = mysqli_query($connection, "UPDATE car_details SET branchid='$branchid[branchid]'where carid='$_SESSION[carid]'");
+
+  $update = mysqli_query($connection, "UPDATE car_details SET  `description`='$tarea', capacity='$capacity',`type`='$typeoption', gears='$gearsoption', price='$price' where carid='$_SESSION[carid]' ");
+  echo "<script> alert('Successfully Edited') </script>";
   echo "<script type='text/javascript'>window.location.href='index_manager.php';</script>";
-  echo "<script> alert('Successfully') </script>";
 }
 $connection->close();
 

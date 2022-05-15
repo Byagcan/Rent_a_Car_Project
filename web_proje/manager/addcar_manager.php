@@ -1,6 +1,13 @@
 <?php
 session_start();
 include("../connect.php");
+if (!empty($_SESSION["email"])) {
+  $email = $_SESSION["email"];
+  $result = mysqli_query($connection, "SELECT * FROM user_details WHERE email='$email' and `role`='Admin'");
+  $row = mysqli_fetch_assoc($result);
+} else {
+  header("Location:login_manager.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +67,7 @@ include("../connect.php");
           <div class="image">
             <img src="../images/camera.png" alt="" />
             <form action="addcar_manager.php" method="post" enctype="multipart/form-data">
-              <input type="file" name="file" value="">
+              <input required type="file" name="file" value="">
               <input type="submit" name="addphoto" value="Add Photo">
             </form>
           </div>
@@ -73,24 +80,28 @@ include("../connect.php");
 
               <div class="label">
                 <label for="1">Brand :</label>
-                <input type="text" name="brand" id="1" />
+                <input required type="text" name="brand" id="1" />
               </div>
               <div class="label">
                 <label for="3">Name :</label>
-                <input type="text" name="name" id="3" />
+                <input required type="text" name="name" id="3" />
+              </div>
+              <div class="label">
+                <label for="1">Branch :</label>
+                <input required type="text" name="branch" id="1" placeholder="İstanbul/Antalya/Yalova/İzmir" />
               </div>
               <div class="label">
                 <label for="2">Segment :</label>
-                <input type="text" name="segment" id="2" />
+                <input required type="text" name="segment" id="2" placeholder="A/B/C/D/F/G/S" />
               </div>
               <div class="label">
                 <label for="4">Daily Price :</label>
-                <input type="text" name="price" id="4" />
+                <input required type="text" name="price" id="4" />
               </div>
               <br />
               <div class="icon">
                 <img src="../images/wgroup.png" alt="" />
-                <input type="text" name="capacity" placeholder="Number Of Person" />
+                <input required type="text" name="capacity" placeholder="Number Of Person" />
                 <img src="../images/wpetrol.png" alt="" />
                 <select name="type" id="3">
                   <option value="diesel">Diesel</option>
@@ -158,6 +169,7 @@ if (isset($_POST['addphoto'])) {
 if (isset($_POST['addcar'])) {
   $name = $_POST['name'];
   $brand = $_POST['brand'];
+  $branch = $_POST['branch'];
   $segment = $_POST['segment'];
   $tarea = $_POST['tarea'];
   $capacity = $_POST['capacity'];
@@ -177,22 +189,21 @@ if (isset($_POST['addcar'])) {
       $gearsoption = 'automatic';
     }
   }
-  $status = 0;
   $price = $_POST['price'];
   $insertcarname = mysqli_query($connection, "INSERT INTO car_name(carname) VALUES ('$name')");
   $selectcarname = mysqli_query($connection, "Select * from car_name where carname='$name'");
   $carnameid = mysqli_fetch_assoc($selectcarname);
-  $insertcarsegment = mysqli_query($connection, "INSERT INTO car_segment(carsegment) VALUES ('$segment')");
   $selectcarsegment = mysqli_query($connection, "Select * from car_segment where carsegment='$segment'");
   $segmentid = mysqli_fetch_assoc($selectcarsegment);
   $insertcarbrand = mysqli_query($connection, "INSERT INTO car_brand(brandname) VALUES ('$brand')");
   $selectcarbrand = mysqli_query($connection, "Select * from car_brand where brandname='$brand'");
   $brandid = mysqli_fetch_assoc($selectcarbrand);
-  $result = mysqli_query($connection, "INSERT INTO car_details(carnameid,brandid,carimageid,segmentid,`description`,capacity,`type`,gears,`status`,price) VALUES ('$carnameid[carnameid]','$brandid[brandid]',$_SESSION[imageid],'$segmentid[segmentid]','$tarea','$capacity','$typeoption','$gearsoption','$status','$price')");
-
+  $selectbranch = mysqli_query($connection, "Select * from branch where branchname='$branch'");
+  $branchid = mysqli_fetch_assoc($selectbranch);
+  $result = mysqli_query($connection, "INSERT INTO car_details(carnameid,brandid,carimageid,segmentid,`description`,capacity,`type`,gears,price,branchid) VALUES ('$carnameid[carnameid]','$brandid[brandid]',$_SESSION[imageid],'$segmentid[segmentid]','$tarea','$capacity','$typeoption','$gearsoption','$price','$branchid[branchid]')");
+  echo "<script> alert('Successfully') </script>";
   echo "<script type='text/javascript'>window.location.href='addcar_manager.php';</script>";
   $row = mysqli_fetch_assoc($result);
-  echo "<script> alert('Successfully') </script>";
 }
 $connection->close();
 ?>

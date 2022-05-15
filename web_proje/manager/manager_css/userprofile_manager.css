@@ -109,8 +109,8 @@ body {
 
 /* User Profile */
 .user_profile {
-  margin-top: 50px;
-  width: 750px;
+  margin-top: 70px;
+  width: 850px;
   height: max-content;
   position: absolute;
   top: 50%;
@@ -128,10 +128,15 @@ body {
 
 .label input {
   padding: 6px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  border: 2px solid white;
+  color: white;
 }
 
 .label label {
   color: #eeeeee;
+  margin-top: 10px;
 }
 .feedback {
   margin-top: 2px;
@@ -142,6 +147,10 @@ body {
   align-items: center;
 }
 .feedback textarea {
+  border-radius: 3px;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   text-align: center;
 }
 .rents {
@@ -151,8 +160,9 @@ body {
 }
 th,
 td {
-  border: 1px solid black;
-  background-color: white;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   margin-left: 10px 10px;
 }
 table {
@@ -181,14 +191,33 @@ tbody {
 .information input {
   padding: 5px 20px;
 }
-/* .star {
-  padding: 20px 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+/* responsive */
+@media screen and (max-width: 938px) {
+  .header-menu li {
+    margin-left: 5px;
+    font-size: 13px;
+  }
 }
 
-.star img {
-  width: 20px;
-  height: 20px;
-} */
+@media screen and (max-width: 866px) {
+  .user_profile {
+    margin-top: 130px;
+  }
+}
+@media screen and (max-width: 805px) {
+  .header-navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 120px 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-menu li {
+    margin-left: 5px;
+    font-size: 13px;
+  }
+  .user_profile {
+    margin-top: 270px;
+  }
+}

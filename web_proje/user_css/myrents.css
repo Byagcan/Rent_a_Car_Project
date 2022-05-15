@@ -107,71 +107,51 @@ body {
 }
 
 /* My Rents */
-.myrents-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.title {
+  margin-top: 20px;
 }
-.box {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  margin-bottom: 20px;
+.rents {
+  margin: 50px 40px;
+  height: 500px;
+  overflow: auto;
 }
-.myrents {
-  margin-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 15px;
-  height: 425px;
-  width: 300px;
-  border-radius: 5px;
-  background-image: linear-gradient(to right, #476072de 0%, #064663c0 100%);
+th,
+td {
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.471);
+  margin-left: 10px 10px;
+  color: white;
+  text-align: center;
 }
-
-.description {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.description input {
-  padding: 0.5px 5px;
-  margin-left: 5px;
-  cursor: pointer;
-}
-.description input:hover {
-  background-color: rgba(30, 139, 176, 0.779);
-}
-
-.image {
-  margin: 5px 10%;
-  height: 40%;
-  width: 80%;
-}
-
-#climage {
-  border: 2px solid #cccccc;
-  background-color: #ffffff;
-  padding: 1px;
-  height: 100%;
+table {
   width: 100%;
 }
-.button input {
-  padding: 4px 9px;
-  margin-top: 10px;
-  cursor: pointer;
-  background-color: rgba(255, 255, 255, 0);
-  border: 2px solid black;
-  border-radius: 3px;
-  color: white;
+tbody {
+  height: 50px;
 }
-.button input:hover {
-  background-color: rgba(43, 130, 184, 0.868);
+.photo {
+  width: 40px;
+  height: 70px;
+  margin-left: 20px;
+}
+.photo img {
+  width: 100px;
+  height: 70px;
+}
+.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.button input {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border: 3px solid rgba(255, 0, 0, 0.774);
+  color: rgba(255, 0, 0, 0.773);
+  padding: 2px 4px;
+  cursor: pointer;
+  margin-bottom: 5px;
 }
 /* Footer */
 .footer-container {

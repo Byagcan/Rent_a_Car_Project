@@ -9,6 +9,7 @@ CREATE TABLE `rents` (
   `totalprice` int NOT NULL,
   `creditid` int NOT NULL,
   PRIMARY KEY (`rentid`),
+  CONSTRAINT rentcontrol UNIQUE(carid,purchase_date,return_date),
   FOREIGN KEY (userid) REFERENCES user_details(userid),
   FOREIGN KEY (carid) REFERENCES car_details(carid),
   FOREIGN KEY (creditid) REFERENCES credit_card(creditid)

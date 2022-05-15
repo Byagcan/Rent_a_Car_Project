@@ -5,6 +5,8 @@ if (isset($_GET["userid"])) {
     $result = mysqli_query($connection, "SELECT * FROM user_details WHERE userid=$id");
     $result2 = mysqli_query($connection, "SELECT * FROM user_feedbacks inner join user_details on user_details.userid=user_feedbacks.userid WHERE user_feedbacks.userid='$id'");
     $row = mysqli_fetch_assoc($result);
+    $result3 = mysqli_query($connection, "SELECT * FROM rents inner join user_details on user_details.userid=rents.userid
+    inner join car_details on car_details.carid=rents.carid where user_details.userid='$id' ");
 } else
     header("location:users_manager.php");
 ?>
@@ -56,7 +58,7 @@ if (isset($_GET["userid"])) {
             <div class="profilecontainer">
                 <div class="profile">
                     <div class="image">
-                        <img src="../images/user.png" alt="">
+                        <img src="../images/<?php echo $row['image'] ?>" alt="">
                     </div>
 
                     <div class="information">
@@ -99,19 +101,41 @@ if (isset($_GET["userid"])) {
                     <table>
                         <thead>
                             <tr>
+                                <th>Car Brand</th>
+                                <th>Car Name</th>
+                                <th>Car Segment</th>
+                                <th>Car Branch</th>
                                 <th>Purchase Date</th>
                                 <th>Return Date</th>
-                                <th>Car that Rent</th>
+                                <th>Rent Date</th>
                                 <th>Total Price</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>16</td>
-                                <td>14</td>
-                                <td>10</td>
-                                <td>10</td>
-                            </tr>
+                            <?php
+                            while ($details = mysqli_fetch_assoc($result3)) {
+                                $selectcarname = mysqli_query($connection, "Select * from car_details inner join car_name on car_details.carnameid=car_name.carnameid where carid='$details[carid]' ");
+                                $carnameid = mysqli_fetch_assoc($selectcarname);
+                                $selectcarsegment = mysqli_query($connection, "Select * from car_details inner join car_segment on car_details.segmentid=car_segment.segmentid where carid='$details[carid]'");
+                                $segmentid = mysqli_fetch_assoc($selectcarsegment);
+                                $selectcarbrand = mysqli_query($connection, "Select * from car_details  inner join car_brand on car_details.brandid=car_brand.brandid where carid='$details[carid]'");
+                                $brandid = mysqli_fetch_assoc($selectcarbrand);
+                                $selectbranch = mysqli_query($connection, "Select * from car_details  inner join branch on car_details.branchid=branch.branchid where carid='$details[carid]'");
+                                $branchid = mysqli_fetch_assoc($selectbranch);
+                            ?>
+                                <tr>
+                                    <td><?php echo $brandid['brandname'] ?></td>
+                                    <td><?php echo $carnameid['carname'] ?></td>
+                                    <td><?php echo $segmentid['carsegment'] ?></td>
+                                    <td><?php echo $branchid['branchname'] ?></td>
+                                    <td><?php echo $details['purchase_date'] ?></td>
+                                    <td><?php echo $details['return_date'] ?></td>
+                                    <td><?php echo $details['rent_date'] ?></td>
+                                    <td><?php echo $details['totalprice'] ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                     </table>
                 </div>
 

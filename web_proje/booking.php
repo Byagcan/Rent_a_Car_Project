@@ -1,13 +1,39 @@
 <?php
+
+session_start();
 include('feedback.php');
 include('connect.php');
 if (isset($_GET["carid"])) {
-  $id = $_GET["carid"];
+  $_SESSION["carid"] = $_GET['carid'];
+  $id = $_GET['carid'];
   $result = mysqli_query($connection, "SELECT price,`description`,car_image.image FROM car_details inner join car_image on 
-  car_details.carimageid=car_image.carimageid WHERE carid=$id");
+    car_details.carimageid=car_image.carimageid WHERE carid=$id");
   $row = mysqli_fetch_assoc($result);
-} else
-  header("location:carlist.php");
+  $_SESSION["price"] = $row['price'];
+}
+
+if (!empty($_SESSION['purchase_date']) and !empty($_SESSION['return_date'])) {
+  $purchasedate = $_SESSION['purchase_date'];
+  $returndate = $_SESSION['return_date'];
+}
+if (!empty($_SESSION["email"])) {
+  $email = $_SESSION["email"];
+  $selectuser = mysqli_query($connection, "SELECT * FROM user_details WHERE email='$email'");
+  $user = mysqli_fetch_assoc($selectuser);
+  $selectcard = mysqli_query($connection, "SELECT * FROM credit_card inner join user_details on credit_card.userid=user_details.userid
+  WHERE email='$email'");
+  $card = mysqli_fetch_assoc($selectcard);
+  if (empty($card)) {
+    $card['namesurname'] = "";
+    $card['cardnumber'] = "";
+    $card['day'] = "";
+    $card['year'] = "";
+    $card['ccv'] = "";
+  }
+} else {
+  header("Location:log_ın.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +63,7 @@ if (isset($_GET["carid"])) {
             <ul>
               <li><a href="index.php">Home</a></li>
               <li><a href="log_ın.php">Log In</a></li>
-              <li><a href="index.php#about">About</a></li>
+              <li><a href="cars.php">Rent</a></li>
               <li><a href="conditions.php">Conditions</a></li>
               <li><a href="carlist.php">Car List</a></li>
               <li id="lasthref"><a href="account.php">Account</a></li>
@@ -54,96 +80,38 @@ if (isset($_GET["carid"])) {
     <div class="booking">
       <div class="container">
         <div class="booking-content anime-top">
-          <h1>Booking</h1>
-          <div class="booking-row">
-            <div class="booking-column">
+          <h1 style="font-size:xx-large;">Booking</h1>
+          <form action="booking.php" method="post">
+            <div class="booking-row">
               <div class="carimg">
                 <img src="images/<?php echo $row['image'] ?>" alt="">
-              </div>
-              <div class="price">
-                <div class="1">
-                  <input type="text" placeholder="Daily Price : <?php echo $row['price'] ?>">
-                </div>
-                <div class="4">
-                  <input type="text" placeholder="Total : 100tl">
-                </div>
-                <div class="descriptiontext">
-                  <textarea id="area" name="tarea" rows="4" cols="100">"Description"<?php echo "\n" . $row['description'] ?></textarea>
-                </div>
-                <div class="booking-button">
-                  <input type="submit" name="bookingsubmit" value="Booking">
+                <div class="price">
+                  <div class="descriptiontext">
+                    <h3>Description :</h3>
+                    <textarea id="area" name="tarea" rows="6" cols="100"><?php echo "\n" . $row['description'] ?></textarea>
+
+                  </div>
+                  <h3>Daily Price :</h3>
+                  <input type="number" name="price" placeholder=" <?php echo $row['price'] ?>">
                 </div>
               </div>
-            </div>
-            <div class="booking-row">
-              <div class="booking-column">
-                <div class="p-information">
-                  <h3>Purchase Information</h3>
-                  <div class="select-part">
-                    <div class="city">
-                      <select name="city" id="city" aria-placeholder="Select City">
-                        <option value="İstanbul">İstanbul</option>
-                        <option value="Antalya">Antalya</option>
-                        <option value="Yalova">Yalova</option>
-                        <option value="İzmir">İzmir</option>
-                      </select>
-                    </div>
-                    <div class="office">
-                      <select name="office" id="office">
-                        <option value="Central Office">Central Office</option>
-                        <option value="Airport domestic flights">Airport domestic flights</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="date-part">
-                    <input type="date">
-                    <input type="time">
-                  </div>
 
-                </div>
-                <div class="r-information">
-                  <h3>Return Information</h3>
-                  <div class="select-part">
-                    <div class="city">
-                      <select name="city" id="city" aria-placeholder="Select City">
-                        <option value="İstanbul">İstanbul</option>
-                        <option value="Antalya">Antalya</option>
-                        <option value="Yalova">Yalova</option>
-                        <option value="İzmir">İzmir</option>
-                      </select>
-                    </div>
-                    <div class="office">
-                      <select name="office" id="office">
-                        <option value="Central Office">Central Office</option>
-                        <option value="Airport domestic flights">Airport domestic flights</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="date-part">
-                    <input type="date">
-                    <input type="time">
-                  </div>
-                </div>
-
+              <div class="credit">
+                <h3>Credit Card Information :</h3>
+                <input required type="text" name="namesurname" placeholder="Name and Surname" id="name" value="<?php echo $card['namesurname'] ?>" />
+                <input type="text" name="cardnumber" placeholder="Credit Card Number" id="password" value="<?php echo $card['cardnumber'] ?>" />
+                <input required type="text" name="day" placeholder="Day" id="year" value="<?php echo $card['day'] ?>" />
+                <input required type="text" name="year" placeholder="Year" id="year" value="<?php echo $card['year'] ?>" />
+                <input required type="text" name="ccv" placeholder="CCV" id="ccv" value="<?php echo $card['ccv'] ?>" />
+              </div>
+              <div class="booking-button">
+                <input type="submit" name="bookingsubmit" value="Booking">
               </div>
             </div>
-            <div class="booking-row">
-              <div class="booking-column">
-                <div class="radio-type">
-                  <input type="radio" value="BabySeat" id="BabySeat" style="cursor: pointer;">
-                  <label for="BabySeat">Baby Seat (8tl for each day)</label>
-                  <input type="radio" value="RoadMap" id="RoadMap" style="cursor: pointer;">
-                  <label for="RoadMap">Road Map (free)</label>
-                  <input type="radio" value="CAS" id="CAS" style="cursor: pointer;">
-                  <label for="CAS">CAS (20tl for rent)</label>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
+    </div>
 
   </section>
 
@@ -205,3 +173,28 @@ if (isset($_GET["carid"])) {
 </script>
 
 </html>
+<?php
+if (isset($_POST['bookingsubmit'])) {
+  $price =  $_SESSION["price"];
+  $days = date_diff(date_create($returndate), date_create($purchasedate));
+  $totalprice = ((int)$price) * $days->d;
+  $rentdate = date("Y-m-d");
+  $namesurname = $_POST['namesurname'];
+  $cardnumber = $_POST['cardnumber'];
+  $day = $_POST['day'];
+  $year = $_POST['year'];
+  $ccv = $_POST['ccv'];
+  if (empty($ccv)) {
+    $insertcredit = mysqli_query($connection, "INSERT INTO credit_card(userid,namesurname,cardnumber,`day`,`year`,ccv) VALUES('$user[userid]','$namesurname','$cardnumber','$day','$year','$ccv')");
+  }
+  $selectcardnumber = mysqli_query($connection, "SELECT * FROM credit_card where ccv='$ccv'");
+  $cardnumber = mysqli_fetch_assoc($selectcardnumber);
+  $insert = mysqli_query($connection, "INSERT INTO rents(userid,carid,purchase_date,return_date,rent_date,totalprice,creditid) VALUES('$user[userid]','$_SESSION[carid]','$purchasedate','$returndate','$rentdate','$totalprice','$cardnumber[creditid]')");
+  echo "<script> alert('Payment successfully completed.')</script>";
+  echo "<script> alert('Booking successfully completed.')</script>";
+  echo "<script type='text/javascript'>window.location.href='cars.php';</script>";
+  $row1 = mysqli_fetch_assoc($insert);
+}
+
+$connection->close();
+?>

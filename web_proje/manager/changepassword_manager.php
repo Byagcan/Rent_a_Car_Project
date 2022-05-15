@@ -1,3 +1,12 @@
+<?php
+session_start();
+include("../connect.php");
+if (!empty($_SESSION["email"])) {
+  $email = $_SESSION["email"];
+  $result = mysqli_query($connection, "SELECT * FROM user_details WHERE email='$email' and `role`='Admin'");
+  $row = mysqli_fetch_assoc($result);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,26 +79,26 @@
             </div>
             <div class="column information">
               <div class="info">
-                <div class="oldpassword">
-                  <h3>Old Password</h3>
-                  <br />
-                  <input type="password" />
-                </div>
-                <div class="newpassword">
-                  <h3>New Password</h3>
-                  <br />
-                  <input type="password" />
-                </div>
-                <div class="newpasswordagain">
-                  <h3>New Password Again</h3>
-                  <br />
-                  <input type="password" />
-                </div>
-                <div class="submit">
-                  <form action="index_manager.php">
-                    <input type="submit" value="Change" id="submit" />
-                  </form>
-                </div>
+                <form action="changepassword_manager.php" method="post">
+                  <div class="oldpassword">
+                    <h3>Old Password</h3>
+                    <br />
+                    <input type="password" name="oldpassword" />
+                  </div>
+                  <div class="newpassword">
+                    <h3>New Password</h3>
+                    <br />
+                    <input type="password" name="password" />
+                  </div>
+                  <div class="newpasswordagain">
+                    <h3>New Password Again</h3>
+                    <br />
+                    <input type="password" name="passwordagain" />
+                  </div>
+                  <div class="submit">
+                    <input type="submit" value="Change" id="submit" name="change" />
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -111,3 +120,35 @@
 </script>
 
 </html>
+<?php
+if (isset($_POST['change'])) {
+  $oldpassword = $_POST['oldpassword'];
+  $oldpassword = md5($oldpassword);
+  $password = $_POST['password'];
+  $password = md5($password);
+  $passwordagain = $_POST['passwordagain'];
+  $passwordagain = md5($passwordagain);
+  $email = $row['email'];
+
+  if (($oldpassword == $row['password'])) {
+    if (!($oldpassword == $password)) {
+      if ($password == $passwordagain) {
+        $result = mysqli_query($connection, "UPDATE user_details SET  password='$password'  where email='$email' and `role`='Admin'");
+        $connection->close();
+        echo "<script> alert('Password Changed Successfully')</script>";
+        echo "<script type='text/javascript'>window.location.href='login_manager.php';</script>";
+      } else {
+        echo "<script> alert('Passwords Not Match')</script>";
+      }
+    } else {
+      echo "<script> alert('The Old Password and The New Password Cannot Be The Same')</script>";
+    }
+  } else {
+    echo "<script> alert('Wrong Old Password')</script>";
+    echo "<script type='text/javascript'>window.location.href='changepassword_manager.php';</script>";
+  }
+  echo "<script type='text/javascript'>window.location.href='account_manager.php';</script>";
+}
+
+$connection->close();
+?>

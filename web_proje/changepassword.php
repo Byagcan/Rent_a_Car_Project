@@ -35,7 +35,7 @@ if (!empty($_SESSION["email"])) {
             <ul>
               <li><a href="index.php">Home</a></li>
               <li><a href="log_ın.php">Log In</a></li>
-              <li><a href="index.php#about">About</a></li>
+              <li><a href="cars.php">Rent</a></li>
               <li><a href="conditions.php">Conditions</a></li>
               <li><a href="carlist.php">Car List</a></li>
               <li id="lasthref"><a href="account.php">Account</a></li>

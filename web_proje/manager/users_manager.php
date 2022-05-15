@@ -1,7 +1,7 @@
 <?php
 include('../connect.php');
 
-$result = mysqli_query($connection, "SELECT * FROM user_details");
+$result = mysqli_query($connection, "SELECT * FROM user_details where `role`='User'");
 
 ?>
 
@@ -58,7 +58,7 @@ $result = mysqli_query($connection, "SELECT * FROM user_details");
           <p>User <?php echo $user['userid'] ?></p>
         </div>
         <div class="user_photo">
-          <img class="" src="../images/pic-1.png" alt="" />
+          <img class="" src="../images/<?php echo $user['image'] ?>" alt="" />
         </div>
         <div class="details">
           <p><span style="color: black">Name:</span> <?php echo $user['name_surname'] ?></p>
@@ -66,7 +66,7 @@ $result = mysqli_query($connection, "SELECT * FROM user_details");
           <p><span style="color: black">Phone Number:</span><?php echo $user['phone_number'] ?></p>
         </div>
         <div class="boxsubmit">
-          <a href="userprofile_manager.php?userid=<?php echo $user["userid"] ?>">Show Information</a>
+          <a href="userprofile_manager.php?userid=<?php echo $user["userid"] ?>"><input type="text" value="Show Info"></a>
         </div>
       </div>
     <?php } ?>

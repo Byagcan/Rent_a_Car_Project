@@ -6,6 +6,16 @@ inner join car_brand on car_details.brandid=car_brand.brandid
 inner join car_name on car_details.carnameid=car_name.carnameid
 inner join car_image on car_details.carimageid=car_image.carimageid");
 
+$countuser = mysqli_query($connection, "SELECT count(userid) as no FROM user_details");
+$countusers = mysqli_fetch_assoc($countuser);
+$countcar = mysqli_query($connection, "SELECT count(carid) as no FROM car_details");
+$countcars = mysqli_fetch_assoc($countcar);
+$countrent = mysqli_query($connection, "SELECT count(rentid) as no FROM rents");
+$countrents = mysqli_fetch_assoc($countrent);
+$countbranch = mysqli_query($connection, "SELECT count(branchid) as no FROM branch");
+$countbranches = mysqli_fetch_assoc($countbranch);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +26,10 @@ inner join car_image on car_details.carimageid=car_image.carimageid");
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <link rel="stylesheet" href="manager_css/index_manager.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
@@ -48,6 +62,32 @@ inner join car_image on car_details.carimageid=car_image.carimageid");
 
   <section id="manager-index">
     <div class="container">
+
+      <div class="info">
+        <div class="countuser">
+          <span class="material-symbols-outlined"> group</span>
+          <h1 class="timer" data-from="0" data-to=<?php echo $countusers['no'] ?> data-speed="1500" data-refresh-interval="5"><?php echo $countusers['no'] ?></h1>
+        </div>
+        <div class="countcar">
+          <span class="material-symbols-outlined">
+            directions_car
+          </span>
+          <h1 class="timer" data-from="0" data-to="<?php echo $countcars['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countcars['no'] ?></h1>
+        </div>
+        <div class="countbranch">
+          <span class="material-symbols-outlined">
+            apartment
+          </span>
+          <h1 class="timer" data-from="0" data-to="<?php echo $countbranches['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countbranches['no'] ?></h1>
+        </div>
+        <div class="countrents">
+          <span class="material-symbols-outlined">
+            fact_check
+          </span>
+          <h1 class="timer" data-from="0" data-to="<?php echo $countrents['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countrents['no'] ?></h1>
+        </div>
+
+      </div>
       <div class="row">
         <?php
         while ($car = mysqli_fetch_assoc($result)) {

@@ -1,3 +1,14 @@
+<?php
+session_start();
+include("../connect.php");
+if (!empty($_SESSION["email"])) {
+  $email = $_SESSION["email"];
+  $result = mysqli_query($connection, "SELECT * FROM admin_details WHERE email='$email' and role='Admin'");
+  $row = mysqli_fetch_assoc($result);
+} else {
+  header("Location:login_manager.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,43 +73,45 @@
                 </form>
               </div>
               <div class="logout">
-                <form action="index_manager.php">
+                <form action="logout_manager.php">
                   <input type="submit" value="Log Out" />
                 </form>
               </div>
             </div>
             <div class="column information">
               <div class="info">
-                <div class="name">
-                  <h3>Name Surname</h3>
-                  <br />
-                  <input type="text" placeholder="Buse Yağcan" />
-                </div>
-                <div class="phonenumber">
-                  <h3>Phone Number</h3>
-                  <br />
-                  <input type="text" placeholder="0524876521" />
-                </div>
-                <div class="email">
-                  <h3>Email</h3>
-                  <br />
-                  <input type="text" placeholder="buseyagcan@gmail.com" />
-                </div>
-                <div class="birthdate">
-                  <h3>Birthdate</h3>
-                  <br />
-                  <input type="text" placeholder="yy/mm/dd" />
-                </div>
-                <div class="tc">
-                  <h3>TC</h3>
-                  <br />
-                  <input type="text" />
-                </div>
-                <div class="submit">
-                  <form action="index_manager.php">
-                    <input type="submit" value="submit" id="submit" />
-                  </form>
-                </div>
+                <form action="account_manager.php" method="post">
+                  <div class="name">
+                    <h3>Name Surname</h3>
+                    <br />
+                    <input type="text" name="namesurname" value="<?php echo $row['name_surname'] ?>" />
+                  </div>
+                  <div class="phonenumber">
+                    <h3>Phone Number</h3>
+                    <br />
+                    <input type="text" name="phonenumber" value="<?php echo $row['phone_number'] ?>" />
+                  </div>
+                  <div class="email">
+                    <h3>Email</h3>
+                    <br />
+                    <input type="text" name="email" value="<?php echo $row['email'] ?>" />
+                  </div>
+                  <div class="birthdate">
+                    <h3>Birthdate</h3>
+                    <br />
+                    <input type="text" name="birthdate" placeholder="yy/mm/dd" value="<?php echo $row['birthdate'] ?>" />
+                  </div>
+                  <div class="tc">
+                    <h3>TC</h3>
+                    <br />
+                    <input type="text" name="tc" value="<?php echo $row['personal_id'] ?>" />
+                  </div>
+                  <div class="submit">
+                    <form action="index_manager.php">
+                      <input type="submit" name="save" value="submit" id="Save" />
+                    </form>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -120,3 +133,27 @@
 </script>
 
 </html>
+<?php
+if (isset($_POST['save'])) {
+  $namesurname = $_POST['namesurname'];
+  $phonenumber = $_POST['phonenumber'];
+  $birthdate = $_POST['birthdate'];
+  $tc = $_POST['tc'];
+  $email = $row['email'];
+
+  if (!($_POST['namesurname'] == $row['name_surname'])) {
+    $result = mysqli_query($connection, "UPDATE admin_details SET  name_surname='$namesurname'  where email='$email' and `role`='Admin'");
+  }
+  if (!($_POST['phonenumber'] == $row['phone_number'])) {
+    $result = mysqli_query($connection, "UPDATE admin_details SET  phone_number='$phonenumber'  where email='$email' and `role`='Admin'");
+  }
+  if (!($_POST['birthdate'] == $row['birthdate'])) {
+    $result = mysqli_query($connection, "UPDATE admin_details SET  birthdate='$birthdate'  where email='$email' and `role`='Admin'");
+  }
+  if (!($_POST['tc'] == $row['personal_id'])) {
+    $result = mysqli_query($connection, "UPDATE admin_details SET  personal_id='$tc'  where email='$email' and `role`='Admin'");
+  }
+  echo "<script type='text/javascript'>window.location.href='account_manager.php';</script>";
+  $connection->close();
+}
+?>

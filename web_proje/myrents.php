@@ -1,5 +1,15 @@
 <?php
+
+use LDAP\Result;
+
 include('../web_proje/feedback.php');
+include('../web_proje/connect.php');
+session_start();
+if (!empty($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+    $result = mysqli_query($connection, "SELECT * FROM rents inner join user_details on user_details.userid=rents.userid
+    inner join car_details on car_details.carid=rents.carid where user_details.email='$email' ");
+}
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +39,7 @@ include('../web_proje/feedback.php');
                         <ul>
                             <li><a href="index.php">Home</a></li>
                             <li><a href="log_ın.php">Log In</a></li>
-                            <li><a href="index.php#about">About</a></li>
+                            <li><a href="cars.php">Rent</a></li>
                             <li><a href="conditions.php">Conditions</a></li>
                             <li><a href="carlist.php">Car List</a></li>
                             <li id="lasthref"><a href="account.php">Account</a></li>
@@ -41,57 +51,95 @@ include('../web_proje/feedback.php');
     </header>
     <!-- Header Finish -->
 
-    <!-- My Rents Start -->
-    <div class="myrents-container">
-        <h1>MY RENTS</h1>
-        <div class="box">
-            <div class="myrents">
+    <!-- Change Password Start -->
 
-                <div class="image">
-                    <img id="climage" src="images/cl6.png" alt="" />
+    <div class="account">
+        <div class="container">
+            <div class="content">
+                <div class="title">
+                    <h1 style="color: black; text-align:center">My Rents</h1>
                 </div>
-                <h2>A</h2>
-                <h3 style="text-align: center">A Segment</h3>
-                <div class="description">
-                    <h4>Purchase Date:2001-02-02</h4>
-                    <h4>Return Date:2001-02-02</h4>
-                    <h4>Total Price:1587tl</h4>
+                <div class="rents">
 
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Car Image</th>
+                                <th>Car Brand</th>
+                                <th>Car Name</th>
+                                <th>Car Segment</th>
+                                <th>Car Branch</th>
+                                <th>Purchase Date</th>
+                                <th>Return Date</th>
+                                <th>Rent Date</th>
+                                <th>Total Price</th>
+                                <th>Proccess</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+
+                            while ($details = mysqli_fetch_assoc($result)) {
+                                $selectcarimage = mysqli_query($connection, "Select * from car_details inner join car_image on car_details.carimageid=car_image.carimageid where carid='$details[carid]' ");
+                                $carimageid = mysqli_fetch_assoc($selectcarimage);
+                                $selectcarname = mysqli_query($connection, "Select * from car_details inner join car_name on car_details.carnameid=car_name.carnameid where carid='$details[carid]' ");
+                                $carnameid = mysqli_fetch_assoc($selectcarname);
+                                $selectcarsegment = mysqli_query($connection, "Select * from car_details inner join car_segment on car_details.segmentid=car_segment.segmentid where carid='$details[carid]'");
+                                $segmentid = mysqli_fetch_assoc($selectcarsegment);
+                                $selectcarbrand = mysqli_query($connection, "Select * from car_details  inner join car_brand on car_details.brandid=car_brand.brandid where carid='$details[carid]'");
+                                $brandid = mysqli_fetch_assoc($selectcarbrand);
+                                $selectbranch = mysqli_query($connection, "Select * from car_details  inner join branch on car_details.branchid=branch.branchid where carid='$details[carid]'");
+                                $branchid = mysqli_fetch_assoc($selectbranch);
+
+                            ?>
+                                <tr>
+                                    <td>
+                                        <div class="photo">
+                                            <img src="images/<?php echo $carimageid['image'] ?>" alt="">
+                                        </div>
+                                    </td>
+                                    <td><?php echo $brandid['brandname'] ?></td>
+                                    <td><?php echo $carnameid['carname'] ?></td>
+                                    <td><?php echo $segmentid['carsegment'] ?></td>
+                                    <td><?php echo $branchid['branchname'] ?></td>
+                                    <td><?php echo $details['purchase_date'] ?></td>
+                                    <td><?php echo $details['return_date'] ?></td>
+                                    <td><?php echo $details['rent_date'] ?></td>
+                                    <td><?php echo $details['totalprice'] ?></td>
+                                    <td>
+                                        <div class="button">
+                                            <?php
+                                            $date = date("Y-m-d");
+                                            if (($date < $details['purchase_date'] and $date < $details['return_date']) or
+                                                ($date > $details['purchase_date'] and $date < $details['return_date'])
+                                            ) {
+
+                                            ?>
+                                                <!-- <a href="#"><input type="submit" value="  Edit  "></a>
+                                                <form action="myrents.php" method="post">
+                                                    <input name="delete" type="submit" value="Delete">
+                                                </form> -->
+                                            <?php
+                                            } else {
+                                            ?>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                    </table>
                 </div>
-                <div class="button">
-                    <form action="#">
-                        <input type="submit" value="Cancel" name="cancel" />
-                        <input type="submit" value="Update" name="update" />
-                    </form>
-                </div>
-            </div>
 
-        </div>
-        <h1>MY PAST RENTS</h1>
-        <div class="box">
-            <div class="mypastrents">
-                <div class="myrents">
-
-                    <div class="image">
-                        <img id="climage" src="images/cl6.png" alt="" />
-                    </div>
-                    <h2>A</h2>
-                    <h3 style="text-align: center">A Segment</h3>
-                    <div class="description">
-                        <h4>Purchase Date:2001-02-02</h4>
-                        <h4>Return Date:2001-02-02</h4>
-                        <h4>Total Price:1587tl</h4>
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-
-    </div>
-
-    <!-- My Rents Finish -->
+    <!-- Change Password Finish -->
 
     <!-- Footer Start -->
     <footer class="footer">
@@ -126,8 +174,10 @@ include('../web_proje/feedback.php');
                         <p style="font-family: Raleway, sans-serif; color: white">
                             Write your feedback
                         </p>
-                        <input type="text" style="border-radius: 5px" />
-                        <input type="submit" value="submit" style="border-radius: 15px; padding: 2.5px; cursor: pointer" />
+                        <form action="account.php" method="post">
+                            <input type="text" name="feedback" style="border-radius: 5px" />
+                            <input type="submit" name="feedbacks" value="submit" style="border-radius: 15px; padding: 2.5px; cursor: pointer" />
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -135,9 +185,6 @@ include('../web_proje/feedback.php');
     </footer>
 
     <!-- Footer Finish -->
-
-
-
 </body>
 
 </html>

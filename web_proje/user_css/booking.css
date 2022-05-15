@@ -125,48 +125,51 @@ body {
   align-items: center;
 }
 
-.booking-column {
+.carimg {
+  border-bottom: 2px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 3px solid white;
-}
-.carimage {
-  width: 615px;
-  height: 292px;
 }
 .carimg img {
   margin-bottom: 50px;
   border: 2px solid #cccccc;
   background-color: #ffffff;
   padding: 1px;
-  height: 70%;
-  width: 70%;
+  height: 40%;
+  width: 40%;
 }
 
 .price {
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
 .booking-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
-  margin-right: 40px;
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 .booking-button input {
-  padding: 6px 10px;
+  padding: 10px 15px;
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid white;
   border-radius: 3px;
   color: white;
   cursor: pointer;
+  margin-right: 10px;
 }
 .descriptiontext {
   margin-right: 35px;
 }
 .descriptiontext textarea {
-  width: 300px;
+  width: 380px;
   height: 73px;
+  margin-left: 25px;
   overflow-y: scroll;
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid white;
@@ -181,12 +184,14 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #596971;
 }
-.price input[type="text"] {
+.price input[type="number"] {
   background-color: rgba(0, 0, 0, 0);
   padding: 7px;
   width: 200px;
   margin-bottom: 5px;
+  border: 2px solid white;
   border-radius: 3px;
+  color: white;
 }
 
 .price input::placeholder {
@@ -212,26 +217,8 @@ select {
   color: white;
 }
 
-.p-information {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-right: 30px;
-}
-
-.r-information {
-  margin-left: 30px;
-}
-
 .date-part input[type="date"] {
   padding: 4px;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid white;
-  color: white;
-}
-
-.date-part input[type="time"] {
-  padding: 3px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0);
   border: 2px solid white;
@@ -252,17 +239,23 @@ select {
   letter-spacing: 10px;
 }
 
-.radio-type {
-  display: block;
+.credit {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
 }
-
-.radio-type label {
+.credit input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 390px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid white;
   color: white;
-  margin-right: 8px;
 }
 
 /* Footer */

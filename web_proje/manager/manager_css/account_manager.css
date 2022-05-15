@@ -218,12 +218,12 @@ h3 {
 /* Responsive */
 
 /* Header Responsive */
-@media screen and (max-width: 919px) {
+@media screen and (max-width: 943px) {
   .header-menu li {
     margin-left: 5px;
   }
 }
-@media screen and (max-width: 787px) {
+@media screen and (max-width: 806px) {
   .header-navbar {
     display: flex;
     flex-direction: column;
@@ -233,9 +233,14 @@ h3 {
   }
 }
 
-@media screen and (max-width: 518px) {
+@media screen and (max-width: 534px) {
   .header-menu li {
     font-size: 15px;
+  }
+}
+@media screen and (max-width: 514px) {
+  .header-menu li {
+    font-size: 13px;
   }
 }
 

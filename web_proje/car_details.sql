@@ -9,7 +9,6 @@ CREATE TABLE `car_details` (
   `capacity` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
   `gears` varchar(45) NOT NULL,
-  `status` INT NOT NULL,
   `price` INT NOT NULL,
   `branchid` int NOT NULL,
   PRIMARY KEY (`carid`),

@@ -1,3 +1,14 @@
+<?php
+session_start();
+include("../connect.php");
+if (!empty($_SESSION["email"])) {
+  $email = $_SESSION["email"];
+} else {
+  header("Location:login_manager.php");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
