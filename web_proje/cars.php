@@ -2,7 +2,12 @@
 session_start();
 include('feedback.php');
 include('connect.php');
-
+if (isset($_GET["rentid"])) {
+  $rentid = $_GET["rentid"];
+  $updatedate = mysqli_query($connection, "UPDATE  rents SET purchase_date='1999-09-09', return_date='1999-09-09'  WHERE rentid='$rentid'");
+} else {
+  $rentid = "";
+}
 if (!empty($_SESSION["email"])) {
   $email = $_SESSION["email"];
   $userdetails = mysqli_query($connection, "SELECT * FROM user_details WHERE email='$email'");
@@ -10,6 +15,7 @@ if (!empty($_SESSION["email"])) {
 } else {
   header("Location:log_ın.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +70,7 @@ if (!empty($_SESSION["email"])) {
     <div class="carlist">
       <div class="carlist-container">
         <div class="carlist-content">
-          <form action="cars.php" method="post">
+          <form action="" method="post">
             <div class="carlist-row-info">
               <div class="select-part">
                 <select required name="city" id="city" aria-placeholder="Select City">
@@ -76,10 +82,10 @@ if (!empty($_SESSION["email"])) {
               </div>
 
               <div class="date-part">
-                <input required name="date1" type="date" min="<?php echo date("Y-m-d"); ?> ">
+                <input required name="date1" type="date" min=<?php echo date("Y-m-d"); ?>>
               </div>
               <div class="date-part">
-                <input required name="date2" type="date" min="<?php echo date("Y-m-d"); ?> ">
+                <input required name="date2" type="date" min=<?php echo date("Y-m-d"); ?>>
               </div>
               <div class="searchbutton">
                 <input type="submit" name="searchbutton" value="search">
@@ -90,44 +96,48 @@ if (!empty($_SESSION["email"])) {
             <?php
             if (isset($_POST["searchbutton"])) {
               $city = $_POST['city'];
-              $_SESSION['purchase_date'] = $_POST['date1'];
-              $_SESSION['return_date']  = $_POST['date2'];
+              if ($_POST['date1'] < $_POST['date2']) {
+                $_SESSION['purchase_date'] = $_POST['date1'];
+                $_SESSION['return_date']  = $_POST['date2'];
 
 
-              $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,branch.branchname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,price FROM car_details 
-            inner join car_brand on car_details.brandid=car_brand.brandid 
-            inner join car_name on car_details.carnameid=car_name.carnameid 
-            inner join car_segment on car_details.segmentid=car_segment.segmentid
-            inner join car_image on car_details.carimageid=car_image.carimageid
-            inner join branch on car_details.branchid=branch.branchid
-            where (branch.branchname='$city') and car_details.carid not in (Select rents.carid from rents inner join car_details on rents.carid=car_details.carid 
-            where (('$_SESSION[purchase_date]' >= purchase_date and '$_SESSION[purchase_date]' <= return_date ) and ('$_SESSION[return_date]' >= purchase_date and '$_SESSION[return_date]' <= return_date) and ('$_SESSION[purchase_date]' <= purchase_date and '$_SESSION[return_date]' >= return_date)))");
+                $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,branch.branchname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,price FROM car_details 
+                inner join car_brand on car_details.brandid=car_brand.brandid 
+                inner join car_name on car_details.carnameid=car_name.carnameid 
+                inner join car_segment on car_details.segmentid=car_segment.segmentid
+                inner join car_image on car_details.carimageid=car_image.carimageid
+                inner join branch on car_details.branchid=branch.branchid
+                where (branch.branchname='$city') and car_details.carid not in (Select rents.carid from rents inner join car_details on rents.carid=car_details.carid 
+                where ( ('$_SESSION[purchase_date]' >= purchase_date and '$_SESSION[return_date]' <= return_date) or ('$_SESSION[purchase_date]' <= return_date and '$_SESSION[return_date]' >= return_date) or ('$_SESSION[purchase_date]' <= purchase_date and '$_SESSION[return_date]' >= return_date)))");
 
-              while ($car = mysqli_fetch_assoc($result)) {
+                while ($car = mysqli_fetch_assoc($result)) {
             ?>
-                <div class="carlist-column column1">
-                  <div class="carlist-image">
-                    <img id="climage" src="images/<?php echo $car['image'] ?>" alt="" />
+                  <div class="carlist-column column1">
+                    <div class="carlist-image">
+                      <img id="climage" src="images/<?php echo $car['image'] ?>" alt="" />
+                    </div>
+                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Model: </span><?php echo $car['brandname'] ?></h2>
+                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Name: </span><?php echo $car['carname'] ?></h2>
+                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Segment: </span><?php echo $car['carsegment'] ?></h2>
+                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Daily Price: </span><?php echo $car['price'] ?></h2>
+                    <div class="description">
+                      <img src="images/group.png" alt="" />
+                      <img src="images/petrol.png" alt="" />
+                      <img src="images/setting.png" alt="" />
+                    </div>
+                    <div class="imgp">
+                      <h4>x<?php echo $car['capacity'] ?></h4>
+                      <h4><?php echo $car['type'] ?></h4>
+                      <h4><?php echo $car['gears'] ?></h4>
+                    </div>
+                    <div class="button">
+                      <a href="booking.php?carid=<?php echo $car["carid"] ?>&rentid=<?php echo $rentid ?>"><input type="submit" value="Booking" /></a>
+                    </div>
                   </div>
-                  <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Model: </span><?php echo $car['brandname'] ?></h2>
-                  <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Name: </span><?php echo $car['carname'] ?></h2>
-                  <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Segment: </span><?php echo $car['carsegment'] ?></h2>
-                  <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Daily Price: </span><?php echo $car['price'] ?></h2>
-                  <div class="description">
-                    <img src="images/group.png" alt="" />
-                    <img src="images/petrol.png" alt="" />
-                    <img src="images/setting.png" alt="" />
-                  </div>
-                  <div class="imgp">
-                    <h4>x<?php echo $car['capacity'] ?></h4>
-                    <h4><?php echo $car['type'] ?></h4>
-                    <h4><?php echo $car['gears'] ?></h4>
-                  </div>
-                  <div class="button">
-                    <a href="booking.php?carid=<?php echo $car["carid"] ?>"><input type="submit" value="Booking" /></a>
-                  </div>
-                </div>
             <?php }
+              } else {
+                echo "<script> alert('Please Enter The Correct Date Type.')</script>";
+              }
             } ?>
           </div>
         </div>

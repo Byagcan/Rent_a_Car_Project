@@ -154,9 +154,10 @@ body {
   margin-bottom: 20px;
 }
 
-.booking-button input {
+.booking-button input,
+button {
   padding: 10px 15px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0);
   border: 1px solid white;
   border-radius: 3px;
   color: white;
@@ -252,6 +253,17 @@ select {
   margin-bottom: 10px;
   padding: 10px;
   width: 390px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid white;
+  color: white;
+}
+.cardbuttons input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  padding: 6px;
+  width: 90px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0);
   border: 2px solid white;

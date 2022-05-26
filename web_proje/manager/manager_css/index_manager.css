@@ -106,12 +106,12 @@ body {
 }
 
 /* Content */
-.container {
+.content {
   background-color: rgba(0, 0, 0, 0.7);
 }
 .row {
   margin-bottom: 0;
-  margin-top: 30px;
+  margin-top: 45px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;

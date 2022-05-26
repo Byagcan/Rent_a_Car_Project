@@ -81,7 +81,7 @@ if (!empty($_SESSION["email"])) {
       <div class="container">
         <div class="booking-content anime-top">
           <h1 style="font-size:xx-large;">Booking</h1>
-          <form action="booking.php" method="post">
+          <form action="" method="post">
             <div class="booking-row">
               <div class="carimg">
                 <img src="images/<?php echo $row['image'] ?>" alt="">
@@ -103,9 +103,13 @@ if (!empty($_SESSION["email"])) {
                 <input required type="text" name="day" placeholder="Day" id="year" value="<?php echo $card['day'] ?>" />
                 <input required type="text" name="year" placeholder="Year" id="year" value="<?php echo $card['year'] ?>" />
                 <input required type="text" name="ccv" placeholder="CCV" id="ccv" value="<?php echo $card['ccv'] ?>" />
+                <div class="cardbuttons">
+                  <input type="submit" value="Add Card" name="addcard">
+                </div>
               </div>
               <div class="booking-button">
                 <input type="submit" name="bookingsubmit" value="Booking">
+                <button><a href="index.php"> Cancel </a></button>
               </div>
             </div>
           </form>
@@ -172,29 +176,85 @@ if (!empty($_SESSION["email"])) {
   });
 </script>
 
+
 </html>
 <?php
-if (isset($_POST['bookingsubmit'])) {
-  $price =  $_SESSION["price"];
-  $days = date_diff(date_create($returndate), date_create($purchasedate));
-  $totalprice = ((int)$price) * $days->d;
-  $rentdate = date("Y-m-d");
+$rentid = $_GET['rentid'];
+$carid = $_SESSION['carid'];
+if (isset($_POST['addcard'])) {
   $namesurname = $_POST['namesurname'];
   $cardnumber = $_POST['cardnumber'];
   $day = $_POST['day'];
   $year = $_POST['year'];
   $ccv = $_POST['ccv'];
-  if (empty($ccv)) {
-    $insertcredit = mysqli_query($connection, "INSERT INTO credit_card(userid,namesurname,cardnumber,`day`,`year`,ccv) VALUES('$user[userid]','$namesurname','$cardnumber','$day','$year','$ccv')");
-  }
   $selectcardnumber = mysqli_query($connection, "SELECT * FROM credit_card where ccv='$ccv'");
-  $cardnumber = mysqli_fetch_assoc($selectcardnumber);
-  $insert = mysqli_query($connection, "INSERT INTO rents(userid,carid,purchase_date,return_date,rent_date,totalprice,creditid) VALUES('$user[userid]','$_SESSION[carid]','$purchasedate','$returndate','$rentdate','$totalprice','$cardnumber[creditid]')");
-  echo "<script> alert('Payment successfully completed.')</script>";
-  echo "<script> alert('Booking successfully completed.')</script>";
-  echo "<script type='text/javascript'>window.location.href='cars.php';</script>";
-  $row1 = mysqli_fetch_assoc($insert);
+  $selectcardnumber = mysqli_fetch_assoc($selectcardnumber);
+  if (empty($selectcardnumber)) {
+    $insertcredit = mysqli_query($connection, "INSERT INTO credit_card(userid,namesurname,cardnumber,`day`,`year`,ccv) VALUES('$user[userid]','$namesurname','$cardnumber','$day','$year','$ccv')");
+    echo "<script> alert('Your Card Has Been Successfully Added.Please Fiil In the Blank Again For Booking')</script>";
+  } else {
+    echo "<script> alert('Your Card Has Already Added.')</script>";
+  }
 }
+
+if (isset($_POST['bookingsubmit'])) {
+  if ($rentid) {
+    $price =  $_SESSION["price"];
+    $days = date_diff(date_create($returndate), date_create($purchasedate));
+    $totalprice = ((int)$price) * $days->d;
+    $rentdate = date("Y-m-d");
+    $namesurname = $_POST['namesurname'];
+    $cardnumber = $_POST['cardnumber'];
+    $day = $_POST['day'];
+    $year = $_POST['year'];
+    $ccv = $_POST['ccv'];
+    $selectcardnumber = mysqli_query($connection, "SELECT * FROM credit_card where ccv='$ccv'");
+    $selectcard = mysqli_fetch_assoc($selectcardnumber);
+    if (empty($selectcard)) {
+      echo "<script> alert('Your Card Is Not Attached. Please Add Your Card.')</script>";
+    } else {
+      $update = mysqli_query($connection, "UPDATE rents SET carid='$carid',purchase_date='$purchasedate', return_date='$returndate', 
+     rent_date='$rentdate', totalprice='$totalprice',creditid='$selectcard[creditid]' where rentid='$rentid' ");
+      echo "<script> alert('Payment successfully updated.')</script>";
+      echo "<script> alert('Booking successfully updated.')</script>";
+      echo "<script type='text/javascript'>window.location.href='cars.php';</script>";
+      $row1 = mysqli_fetch_assoc($update);
+    }
+  } else {
+    $selectrents = mysqli_query($connection, "SELECT * FROM rents where carid='$carid'");
+    $price =  $_SESSION["price"];
+    $days = date_diff(date_create($returndate), date_create($purchasedate));
+    $totalprice = ((int)$price) * $days->d;
+    $rentdate = date("Y-m-d");
+    $namesurname = $_POST['namesurname'];
+    $cardnumber = $_POST['cardnumber'];
+    $day = $_POST['day'];
+    $year = $_POST['year'];
+    $ccv = $_POST['ccv'];
+    $selectcardnumber = mysqli_query($connection, "SELECT * FROM credit_card where ccv='$ccv'");
+    $selectcard = mysqli_fetch_assoc($selectcardnumber);
+    if (empty($selectcard)) {
+      echo "<script> alert('Your Card Is Not Attached. Please Add Your Card.')</script>";
+    } else {
+      try {
+        $insert = mysqli_query($connection, "INSERT INTO rents(userid,carid,purchase_date,return_date,rent_date,totalprice,creditid) VALUES('$user[userid]','$carid','$purchasedate','$returndate','$rentdate','$totalprice','$selectcard[creditid]')");
+        echo "<script language='javascript'>
+        confirm('Total Price:$totalprice')
+        </script> ";
+
+        echo "<script> alert('Payment successfully completed.')</script>";
+        echo "<script> alert('Booking successfully completed.')</script>";
+        echo "<script type='text/javascript'>window.location.href='cars.php';</script>";
+        throw new Exception('The Car Has Already Booked.');
+      } catch (Exception $e) {
+        echo "<script> alert('The Car Has Already Booked.')</script>";
+        echo "<script type='text/javascript'>window.location.href='cars.php';</script>";
+      }
+      $row1 = mysqli_fetch_assoc($insert);
+    }
+  }
+}
+
 
 $connection->close();
 ?>

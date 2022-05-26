@@ -1,10 +1,13 @@
 <?php
 include('../connect.php');
-
-$result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,car_image.image FROM car_details 
+$date = date("Y-m-d");
+$result = mysqli_query($connection, "SELECT car_details.carid,car_name.carname,car_brand.brandname,car_image.image FROM car_details 
 inner join car_brand on car_details.brandid=car_brand.brandid 
 inner join car_name on car_details.carnameid=car_name.carnameid
-inner join car_image on car_details.carimageid=car_image.carimageid");
+inner join car_image on car_details.carimageid=car_image.carimageid where  car_details.carid not in (Select rents.carid from rents inner join car_details on rents.carid=car_details.carid 
+                where (('$date' < rents.purchase_date and '$date' < rents.return_date) or
+                                                ('$date' > rents.purchase_date and '$date' < rents.return_date)
+                                            ));");
 
 $countuser = mysqli_query($connection, "SELECT count(userid) as no FROM user_details");
 $countusers = mysqli_fetch_assoc($countuser);
@@ -61,54 +64,56 @@ $countbranches = mysqli_fetch_assoc($countbranch);
   <!-- Header Finish -->
 
   <section id="manager-index">
-    <div class="container">
+    <div class="content">
+      <div class="container">
 
-      <div class="info">
-        <div class="countuser">
-          <span class="material-symbols-outlined"> group</span>
-          <h1 class="timer" data-from="0" data-to=<?php echo $countusers['no'] ?> data-speed="1500" data-refresh-interval="5"><?php echo $countusers['no'] ?></h1>
-        </div>
-        <div class="countcar">
-          <span class="material-symbols-outlined">
-            directions_car
-          </span>
-          <h1 class="timer" data-from="0" data-to="<?php echo $countcars['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countcars['no'] ?></h1>
-        </div>
-        <div class="countbranch">
-          <span class="material-symbols-outlined">
-            apartment
-          </span>
-          <h1 class="timer" data-from="0" data-to="<?php echo $countbranches['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countbranches['no'] ?></h1>
-        </div>
-        <div class="countrents">
-          <span class="material-symbols-outlined">
-            fact_check
-          </span>
-          <h1 class="timer" data-from="0" data-to="<?php echo $countrents['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countrents['no'] ?></h1>
-        </div>
-
-      </div>
-      <div class="row">
-        <?php
-        while ($car = mysqli_fetch_assoc($result)) {
-        ?>
-          <div class="column">
-            <div class="description">
-              <h2 style="text-align:center ;"><?php echo $car['brandname'] ?></h2>
-              <h2 style="text-align:center ;"><?php echo $car['carname'] ?></h2>
-            </div>
-            <div class="image">
-              <img id="carimage" src="../images/<?php echo $car['image'] ?>" alt="">
-            </div>
-            <div class="submit">
-              <a href="edit_manager.php?carid=<?php echo $car["carid"] ?>"><input type="submit" value="Edit" /></a>
-            </div>
+        <div class="info">
+          <div class="countuser">
+            <span class="material-symbols-outlined"> group</span>
+            <h1 class="timer" data-from="0" data-to=<?php echo $countusers['no'] ?> data-speed="1500" data-refresh-interval="5"><?php echo $countusers['no'] ?></h1>
           </div>
-        <?php
-        }
-        ?>
+          <div class="countcar">
+            <span class="material-symbols-outlined">
+              directions_car
+            </span>
+            <h1 class="timer" data-from="0" data-to="<?php echo $countcars['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countcars['no'] ?></h1>
+          </div>
+          <div class="countbranch">
+            <span class="material-symbols-outlined">
+              apartment
+            </span>
+            <h1 class="timer" data-from="0" data-to="<?php echo $countbranches['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countbranches['no'] ?></h1>
+          </div>
+          <div class="countrents">
+            <span class="material-symbols-outlined">
+              fact_check
+            </span>
+            <h1 class="timer" data-from="0" data-to="<?php echo $countrents['no'] ?>" data-speed="1500" data-refresh-interval="5"><?php echo $countrents['no'] ?></h1>
+          </div>
+
+        </div>
+        <div class="row">
+          <?php
+          while ($car = mysqli_fetch_assoc($result)) {
+          ?>
+            <div class="column">
+              <div class="description">
+                <h2 style="text-align:center ;"><?php echo $car['brandname'] ?></h2>
+                <h2 style="text-align:center ;"><?php echo $car['carname'] ?></h2>
+              </div>
+              <div class="image">
+                <img id="carimage" src="../images/<?php echo $car['image'] ?>" alt="">
+              </div>
+              <div class="submit">
+                <a href="edit_manager.php?carid=<?php echo $car["carid"] ?>"><input type="submit" value="Edit" /></a>
+              </div>
+            </div>
+          <?php
+          }
+          ?>
 
 
+        </div>
       </div>
     </div>
 

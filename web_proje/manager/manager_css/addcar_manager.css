@@ -237,12 +237,12 @@ select {
 /* Responsive */
 
 /* Header Responsive */
-@media screen and (max-width: 919px) {
+@media only screen and (max-width: 935px) {
   .header-menu li {
-    margin-left: 5px;
+    margin-left: 10px;
   }
 }
-@media screen and (max-width: 797px) {
+@media only screen and (max-width: 831px) {
   .header-navbar {
     display: flex;
     flex-direction: column;
@@ -250,15 +250,14 @@ select {
     align-items: center;
     justify-content: center;
   }
-
-  .add {
-    margin-top: 400px;
+  .header-menu a {
+    font-size: 13px;
   }
 }
-
-@media screen and (max-width: 518px) {
-  .header-menu li {
-    font-size: 15px;
+/* Add car Responsive */
+@media screen and (max-width: 797px) {
+  .add {
+    margin-top: 400px;
   }
 }
 
@@ -295,8 +294,6 @@ select {
     margin-right: 5px;
   }
 }
-
-/* Add car Responsive */
 @media screen and (max-width: 971px) {
   .add-container {
     width: 700px;
@@ -337,5 +334,34 @@ select {
 
   .submit {
     margin-right: 30px;
+  }
+}
+@media screen and (max-width: 570px) {
+  .add-row h1 {
+    margin-right: 230px;
+  }
+
+  .image {
+    margin-left: 90px;
+  }
+
+  .descriptiontext textarea {
+    width: 300px;
+    margin-right: 230px;
+  }
+  .descriptiontext h4 {
+    margin-right: 210px;
+  }
+
+  .description {
+    margin-right: 230px;
+  }
+
+  .icon {
+    margin-right: 10px;
+  }
+
+  .submit {
+    margin-right: 5px;
   }
 }

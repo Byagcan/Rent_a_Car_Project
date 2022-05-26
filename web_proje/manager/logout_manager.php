@@ -1,7 +1,7 @@
 <?php
-include("connect.php");
+include("../connect.php");
 session_start();
-$_SESSION=[];
+$_SESSION = [];
 session_unset();
-session_destroy();
+//session_destroy();
 header("Location:index_manager.php");

@@ -59,7 +59,7 @@ if (!empty($_SESSION["email"])) {
             <form action="login_manager.php" method="post">
               <input required type="text" name="email" placeholder="Enter your Email" id="email" />
               <input required type="password" name="password" placeholder="Company password" id="password" />
-              <input required type="submit" name="login" value="Log In" id="submit" />
+              <input required type="submit" name="loginm" value="Log In" id="submit" />
             </form>
           </div>
           <div class="signuplink">
@@ -85,7 +85,7 @@ if (!empty($_SESSION["email"])) {
 
 </html>
 <?php
-if (isset($_POST['login'])) {
+if (isset($_POST['loginm'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
   $password = md5($password);

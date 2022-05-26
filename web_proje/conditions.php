@@ -1,6 +1,10 @@
 <?php
 include('feedback.php');
+include('connect.php');
+$sql = mysqli_query($connection, "SELECT * from conditions");
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,16 +50,18 @@ include('feedback.php');
     <div class="conditions">
       <h1>Conditions</h1>
       <div class="container">
-        <div class="wrapper">
-          <button class="toggle">
-            Rental Period :
-            <img src="images/plus.png" alt="" />
-          </button>
-          <div class="content">
-            <p>The minimum rental period is 24 hours.</p>
+        <?php while ($conditions = mysqli_fetch_assoc($sql)) { ?>
+          <div class="wrapper">
+            <button class="toggle">
+              <?php echo $conditions['question'] ?>
+              <img src="images/plus.png" alt="" />
+            </button>
+            <div class="content">
+              <p><?php echo $conditions['answer'] ?></p>
+            </div>
           </div>
-        </div>
-        <div class="wrapper">
+        <?php } ?>
+        <!-- <div class="wrapper">
           <button class="toggle">
             Driver's License and Age Lower Limit :
             <img src="images/plus.png" alt="" />
@@ -90,7 +96,7 @@ include('feedback.php');
           <div class="content">
             <p>
               Fuel, Additional Driver, Baby and Child Seats, Requests for
-              Changes to the Lease Agreement
+              Changes to the Lease Agreement.
             </p>
           </div>
         </div>
@@ -109,7 +115,7 @@ include('feedback.php');
               the Terms of Use of the site are read and accepted by you.
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

@@ -114,64 +114,6 @@ img {
   vertical-align: middle;
 }
 
-/* Slideshow container */
-.slideshow-container {
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-  margin-top: 0px;
-  position: relative;
-}
-
-/* Next & previous buttons */
-.header .prev,
-.header .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 20px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0.4;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@media only screen and (max-width: 300px) {
-  .prev,
-  .next,
-  .text {
-    font-size: 11px;
-  }
-}
-
 /* Car List */
 .carlist-container {
   margin-bottom: 0px;
@@ -393,75 +335,46 @@ footer {
     font-size: 13px;
   }
 }
-
-/* Car List Responsive */
-@media only screen and (max-width: 1288px) {
-  .carlist .slideshow-container {
-    margin-left: 370px;
+/* Cars */
+@media only screen and (max-width: 692px) {
+  .carlist-row-info input[type="date"] {
+    width: 90px;
   }
 }
-
-@media only screen and (max-width: 1046px) {
-  .carlist .slideshow-container {
-    margin-left: 280px;
-  }
-}
-
-@media only screen and (max-width: 832px) {
-  .carlist .slideshow-container {
-    margin-left: 220px;
-  }
-}
-
-@media only screen and (max-width: 720px) {
-  .carlist .slideshow-container {
-    margin-left: 190px;
-    width: 50%;
-  }
-}
-
-@media only screen and (max-width: 720px) {
-  .carlist .slideshow-container {
-    margin-left: 140px;
-    width: 50%;
-  }
-}
-
-@media only screen and (max-width: 1291px) {
-  .carlist-row {
-    grid-template-columns: 1.5fr 1.5fr 1.5fr;
-  }
-}
-
-@media only screen and (max-width: 1046px) {
-  body {
-    height: 290vh;
-  }
+@media screen and (max-width: 1335px) {
   .carlist-row {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
   }
 }
 
-@media only screen and (max-width: 709px) {
-  body {
-    height: 470vh;
-  }
+@media screen and (max-width: 870px) {
   .carlist-row {
     grid-template-columns: 1fr;
-  }
-
-  .carlist-column {
-    margin-right: 60px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  body {
-    height: 470vh;
-  }
-  .carlist-row {
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
   }
 }
 
 /* Footer Responsive */
+@media only screen and (max-width: 790px) {
+  .footer {
+    padding: 120px;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-col {
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .footer-row {
+    float: left;
+  }
+}

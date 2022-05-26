@@ -1,6 +1,5 @@
 <?php
 
-use LDAP\Result;
 
 include('../web_proje/feedback.php');
 include('../web_proje/connect.php');
@@ -94,9 +93,9 @@ if (!empty($_SESSION['email'])) {
                             ?>
                                 <tr>
                                     <td>
-                                        <div class="photo">
-                                            <img src="images/<?php echo $carimageid['image'] ?>" alt="">
-                                        </div>
+
+                                        <img src="images/<?php echo $carimageid['image'] ?>" alt="">
+
                                     </td>
                                     <td><?php echo $brandid['brandname'] ?></td>
                                     <td><?php echo $carnameid['carname'] ?></td>
@@ -115,13 +114,19 @@ if (!empty($_SESSION['email'])) {
                                             ) {
 
                                             ?>
-                                                <!-- <a href="#"><input type="submit" value="  Edit  "></a>
-                                                <form action="myrents.php" method="post">
-                                                    <input name="delete" type="submit" value="Delete">
-                                                </form> -->
+                                                <div class="validbutton">
+                                                    <a href="cars.php?rentid=<?php echo $details['rentid'] ?>"><input type="submit" value="  Edit  "></a>
+                                                    <a href="delete.php?rentid=<?php echo $details['rentid'] ?>"><input type="submit" value="Delete" name="delete"></a>
+
+                                                </div>
                                             <?php
                                             } else {
                                             ?>
+                                                <div class="invalidbutton">
+                                                    <a href="#"><input type="submit" value="  Edit  "></a>
+                                                    <input name="delete" type="submit" value="Delete">
+
+                                                </div>
 
                                             <?php
                                             }

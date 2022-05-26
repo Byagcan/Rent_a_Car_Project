@@ -252,12 +252,12 @@ select {
 /* Responsive */
 
 /* Header Responsive */
-@media screen and (max-width: 919px) {
+@media only screen and (max-width: 935px) {
   .header-menu li {
-    margin-left: 5px;
+    margin-left: 10px;
   }
 }
-@media screen and (max-width: 787px) {
+@media only screen and (max-width: 831px) {
   .header-navbar {
     display: flex;
     flex-direction: column;
@@ -265,15 +265,39 @@ select {
     align-items: center;
     justify-content: center;
   }
-
+}
+@media only screen and (max-width: 833px) {
+  .header-menu a {
+    font-size: 13px;
+  }
   .edit {
-    margin-top: 300px;
+    margin-top: 420px;
+  }
+}
+@media only screen and (max-width: 504px) {
+  .header-menu a {
+    font-size: 12px;
   }
 }
 
-@media screen and (max-width: 518px) {
-  .header-menu li {
-    font-size: 15px;
+@media screen and (max-width: 568px) {
+  .edit {
+    width: 450px;
+  }
+  .label-radio label {
+    color: #eeeeee;
+    margin-right: 0;
+  }
+
+  .icon img {
+    margin-right: 5px;
+  }
+}
+
+/* Edit car Responsive */
+@media screen and (max-width: 787px) {
+  .edit {
+    margin-top: 420px;
   }
 }
 @media screen and (max-width: 970px) {
@@ -295,21 +319,6 @@ select {
     width: 350px;
   }
 }
-
-@media screen and (max-width: 568px) {
-  .edit {
-    width: 450px;
-  }
-  .label-radio label {
-    color: #eeeeee;
-    margin-right: 0;
-  }
-
-  .icon img {
-    margin-right: 5px;
-  }
-}
-/* Edit car Responsive */
 @media screen and (max-width: 973px) {
   .edit-container {
     width: 700px;
@@ -317,6 +326,7 @@ select {
 
   .image {
     width: 300px;
+    margin-left: 200px;
   }
 
   .image input[type="submit"],
@@ -350,5 +360,39 @@ select {
 
   .submit {
     margin-right: 30px;
+  }
+}
+@media screen and (max-width: 570px) {
+  .edit-row h1 {
+    margin-right: 230px;
+  }
+
+  .image {
+    margin-left: 90px;
+  }
+
+  .descriptiontext textarea {
+    width: 300px;
+    margin-right: 230px;
+  }
+  .descriptiontext h4 {
+    margin-right: 210px;
+  }
+
+  .description {
+    margin-right: 230px;
+  }
+
+  .icon {
+    margin-right: 10px;
+  }
+
+  .submit {
+    margin-right: 5px;
+  }
+}
+@media screen and (max-width: 726px) {
+  .icon {
+    margin-right: -65px;
   }
 }
