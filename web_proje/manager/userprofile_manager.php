@@ -1,10 +1,13 @@
 <?php
 include('../connect.php');
 if (isset($_GET["userid"])) {
+    //if the information came with the get method, the database does its operations.
     $id = $_GET["userid"];
     $result = mysqli_query($connection, "SELECT * FROM user_details WHERE userid=$id");
     $result2 = mysqli_query($connection, "SELECT * FROM user_feedbacks inner join user_details on user_details.userid=user_feedbacks.userid WHERE user_feedbacks.userid='$id'");
+    //i get the contacts where the userid that comes with the get method is equal to the database
     $row = mysqli_fetch_assoc($result);
+    //I get the information in the rents table of the userid that I received using the get method. And from there I take the carid and pull the data from the car details table.
     $result3 = mysqli_query($connection, "SELECT * FROM rents inner join user_details on user_details.userid=rents.userid
     inner join car_details on car_details.carid=rents.carid where user_details.userid='$id' ");
 } else

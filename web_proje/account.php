@@ -221,6 +221,7 @@ if (isset($_POST['save'])) {
   if (!($_POST['tc'] == $row['personal_id'])) {
     $result = mysqli_query($connection, "UPDATE user_details SET  personal_id='$tc'  where email='$email'");
   }
+  echo "<script type='text/javascript'>window.location.href='account.php';</script>";
 }
 if (isset($_POST['feedbacks'])) {
   $feedback = $_POST['feedback'];

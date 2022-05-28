@@ -4,7 +4,7 @@ include('feedback.php');
 include('connect.php');
 if (isset($_GET["rentid"])) {
   $rentid = $_GET["rentid"];
-  $updatedate = mysqli_query($connection, "UPDATE  rents SET purchase_date='1999-09-09', return_date='1999-09-09'  WHERE rentid='$rentid'");
+  $updatedate = mysqli_query($connection, "UPDATE  rents SET purchase_date='2001-06-22', return_date='2001-06-23'  WHERE rentid='$rentid'");
 } else {
   $rentid = "";
 }
@@ -80,7 +80,17 @@ if (!empty($_SESSION["email"])) {
                   <option value="İzmir">İzmir</option>
                 </select>
               </div>
-
+              <div class="select-part">
+                <select required name="segment" id="segment" aria-placeholder="Select Segment">
+                  <option value="A">A Segment</option>
+                  <option value="B">B Segment</option>
+                  <option value="C">C Segment</option>
+                  <option value="D">D Segment</option>
+                  <option value="F">F Segment</option>
+                  <option value="G">G Segment</option>
+                  <option value="S">S Segment</option>
+                </select>
+              </div>
               <div class="date-part">
                 <input required name="date1" type="date" min=<?php echo date("Y-m-d"); ?>>
               </div>
@@ -96,6 +106,7 @@ if (!empty($_SESSION["email"])) {
             <?php
             if (isset($_POST["searchbutton"])) {
               $city = $_POST['city'];
+              $segment = $_POST['segment'];
               if ($_POST['date1'] < $_POST['date2']) {
                 $_SESSION['purchase_date'] = $_POST['date1'];
                 $_SESSION['return_date']  = $_POST['date2'];
@@ -107,7 +118,7 @@ if (!empty($_SESSION["email"])) {
                 inner join car_segment on car_details.segmentid=car_segment.segmentid
                 inner join car_image on car_details.carimageid=car_image.carimageid
                 inner join branch on car_details.branchid=branch.branchid
-                where (branch.branchname='$city') and car_details.carid not in (Select rents.carid from rents inner join car_details on rents.carid=car_details.carid 
+                where (branch.branchname='$city' and car_segment.carsegment='$segment') and car_details.carid not in (Select rents.carid from rents inner join car_details on rents.carid=car_details.carid 
                 where ( ('$_SESSION[purchase_date]' >= purchase_date and '$_SESSION[return_date]' <= return_date) or ('$_SESSION[purchase_date]' <= return_date and '$_SESSION[return_date]' >= return_date) or ('$_SESSION[purchase_date]' <= purchase_date and '$_SESSION[return_date]' >= return_date)))");
 
                 while ($car = mysqli_fetch_assoc($result)) {
@@ -116,10 +127,12 @@ if (!empty($_SESSION["email"])) {
                     <div class="carlist-image">
                       <img id="climage" src="images/<?php echo $car['image'] ?>" alt="" />
                     </div>
-                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Model: </span><?php echo $car['brandname'] ?></h2>
-                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Name: </span><?php echo $car['carname'] ?></h2>
-                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Segment: </span><?php echo $car['carsegment'] ?></h2>
-                    <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Daily Price: </span><?php echo $car['price'] ?></h2>
+                    <div class="informations">
+                      <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Model: </span><?php echo $car['brandname'] ?></h2>
+                      <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Name: </span><?php echo $car['carname'] ?></h2>
+                      <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Car Segment: </span><?php echo $car['carsegment'] ?></h2>
+                      <h2><span style="color:rgba(255, 255, 255, 0.356) ;">Daily Price: </span><?php echo $car['price'] ?></h2>
+                    </div>
                     <div class="description">
                       <img src="images/group.png" alt="" />
                       <img src="images/petrol.png" alt="" />

@@ -199,6 +199,7 @@ if (isset($_POST['addcard'])) {
 
 if (isset($_POST['bookingsubmit'])) {
   if ($rentid) {
+    // if informations come from myrents page
     $price =  $_SESSION["price"];
     $days = date_diff(date_create($returndate), date_create($purchasedate));
     $totalprice = ((int)$price) * $days->d;
@@ -221,6 +222,7 @@ if (isset($_POST['bookingsubmit'])) {
       $row1 = mysqli_fetch_assoc($update);
     }
   } else {
+    //if informationss come from cars page
     $selectrents = mysqli_query($connection, "SELECT * FROM rents where carid='$carid'");
     $price =  $_SESSION["price"];
     $days = date_diff(date_create($returndate), date_create($purchasedate));

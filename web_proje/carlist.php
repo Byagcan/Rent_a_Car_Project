@@ -70,11 +70,11 @@ $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.bra
                             <img id="climage" src="images/<?php echo $car['image'] ?>" alt="" />
                         </div>
                         <div class="informations">
-                            <h3><span style="color:rgba(255, 255, 255, 0.356) ;">Car Model: </span><?php echo $car['brandname'] ?></h3>
+                            <h3><span style="color:rgba(255, 255, 255, 0.356) ;">Car Brand: </span><?php echo $car['brandname'] ?></h3>
                             <h3><span style="color:rgba(255, 255, 255, 0.356) ;">Car Name: </span><?php echo $car['carname'] ?></h3>
                             <h3><span style="color:rgba(255, 255, 255, 0.356) ;">Car Segment: </span><?php echo $car['carsegment'] ?></h3>
                             <h3><span style="color:rgba(255, 255, 255, 0.356) ;">Daily Price: </span><?php echo $car['price'] ?></h3>
-                            <h3><span style="color:rgba(255, 255, 255, 0.356) ;">Banch: </span><?php echo $car['branchname'] ?></h3>
+                            <h3><span style="color:rgba(255, 255, 255, 0.356) ;">Branch: </span><?php echo $car['branchname'] ?></h3>
                         </div>
 
                         <div class="description">

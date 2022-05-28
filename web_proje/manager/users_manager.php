@@ -67,6 +67,7 @@ $result = mysqli_query($connection, "SELECT * FROM user_details where `role`='Us
         </div>
         <div class="boxsubmit">
           <a href="userprofile_manager.php?userid=<?php echo $user["userid"] ?>"><input type="text" value="Show Info"></a>
+          <!-- I send userid to userprofile page with get method -->
         </div>
       </div>
     <?php } ?>

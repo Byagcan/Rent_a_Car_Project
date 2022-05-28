@@ -11,7 +11,7 @@ if (!empty($_SESSION["email"])) {
         $imagename = $_FILES['file']['name'];
         $imagesize = $_FILES['file']['size'];
         if ($control == TRUE) {
-            if ($imagesize < 1024 * 512) {
+            if ($imagesize < 1024 * 650) {
                 $image_ex = pathinfo($imagename, PATHINFO_EXTENSION);
                 $exlower = strtolower($image_ex);
                 $imagetype = array("png", "jpg", "jpeg");

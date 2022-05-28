@@ -1,6 +1,7 @@
 <?php
 include('../connect.php');
 $date = date("Y-m-d");
+//I select only cars that are not rented or rented in the past
 $result = mysqli_query($connection, "SELECT car_details.carid,car_name.carname,car_brand.brandname,car_image.image FROM car_details 
 inner join car_brand on car_details.brandid=car_brand.brandid 
 inner join car_name on car_details.carnameid=car_name.carnameid
@@ -8,7 +9,13 @@ inner join car_image on car_details.carimageid=car_image.carimageid where  car_d
                 where (('$date' < rents.purchase_date and '$date' < rents.return_date) or
                                                 ('$date' > rents.purchase_date and '$date' < rents.return_date)
                                             ));");
-
+$bookedcar = mysqli_query($connection, "SELECT car_details.carid,car_name.carname,car_brand.brandname,car_image.image FROM car_details 
+inner join car_brand on car_details.brandid=car_brand.brandid 
+inner join car_name on car_details.carnameid=car_name.carnameid
+inner join car_image on car_details.carimageid=car_image.carimageid where  car_details.carid  in (Select rents.carid from rents inner join car_details on rents.carid=car_details.carid 
+                where (('$date' < rents.purchase_date and '$date' < rents.return_date) or
+                                                ('$date' > rents.purchase_date and '$date' < rents.return_date)
+                                            ));");
 $countuser = mysqli_query($connection, "SELECT count(userid) as no FROM user_details");
 $countusers = mysqli_fetch_assoc($countuser);
 $countcar = mysqli_query($connection, "SELECT count(carid) as no FROM car_details");
@@ -106,6 +113,26 @@ $countbranches = mysqli_fetch_assoc($countbranch);
               </div>
               <div class="submit">
                 <a href="edit_manager.php?carid=<?php echo $car["carid"] ?>"><input type="submit" value="Edit" /></a>
+              </div>
+            </div>
+          <?php
+          }
+          ?>
+
+
+        </div>
+        <H2 style="text-align:center; color:white; margin-top:15px; text-decoration:underline; font-size:50px">BOOKED CAR </H2>
+        <div class="row">
+          <?php
+          while ($car2 = mysqli_fetch_assoc($bookedcar)) {
+          ?>
+            <div class="column">
+              <div class="description">
+                <h2 style="text-align:center ;"><?php echo $car2['brandname'] ?></h2>
+                <h2 style="text-align:center ;"><?php echo $car2['carname'] ?></h2>
+              </div>
+              <div class="image">
+                <img id="carimage" src="../images/<?php echo $car2['image'] ?>" alt="">
               </div>
             </div>
           <?php
