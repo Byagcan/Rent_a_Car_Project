@@ -4,7 +4,7 @@ include("../connect.php");
 if (isset($_GET["carid"])) {
   $_SESSION['carid'] = $_GET["carid"];
   $id = $_GET["carid"];
-  $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,branch.branchname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,price FROM car_details 
+  $result = mysqli_query($connection, "SELECT carid,car_name.carname,car_brand.brandname,branch.branchname,car_image.image,car_segment.carsegment,`description`,capacity,`type`,gears,price,`status`,status_purchasedate,status_returndate FROM car_details 
 inner join car_brand on car_details.brandid=car_brand.brandid 
 inner join car_name on car_details.carnameid=car_name.carnameid 
 inner join car_segment on car_details.segmentid=car_segment.segmentid
@@ -112,6 +112,18 @@ if (!empty($_SESSION["email"])) {
                   <label for="4">Daily Price :</label>
                   <input type="text" name="price" id="4" value="<?php echo $row['price'] ?>" />
                 </div>
+                <div class="label">
+                  <label for="5">Status :</label>
+                  <input type="text" name="status" id="5" value="<?php echo $row['status'] ?>" />
+                </div>
+                <div class="label">
+                  <label for="5">Status Purchase Date :</label>
+                  <input type="text" name="status_purchasedate" id="5" value="<?php echo $row['status_purchasedate'] ?>" />
+                </div>
+                <div class="label">
+                  <label for="5">Status Return Date :</label>
+                  <input type="text" name="status_returndate" id="5" value="<?php echo $row['status_returndate'] ?>" />
+                </div>
                 <br />
                 <div class="icon">
                   <img src="../images/wgroup.png" alt="" />
@@ -196,6 +208,10 @@ if (isset($_POST['editcar'])) {
   $tarea = $_POST['tarea'];
   $capacity = $_POST['capacity'];
   $price = $_POST['price'];
+  $status = $_POST['status'];
+  $statuspdate = $_POST['status_purchasedate'];
+  $statusrdate = $_POST['status_returndate'];
+
   if ($_POST) {
     $type = $_POST['type'];
     if ($type == 'diesel') {
@@ -234,7 +250,7 @@ if (isset($_POST['editcar'])) {
   $branchid = mysqli_fetch_assoc($selectbranch);
   $updatebranch = mysqli_query($connection, "UPDATE car_details SET branchid='$branchid[branchid]'where carid='$_SESSION[carid]'");
 
-  $update = mysqli_query($connection, "UPDATE car_details SET  `description`='$tarea', capacity='$capacity',`type`='$typeoption', gears='$gearsoption', price='$price' where carid='$_SESSION[carid]' ");
+  $update = mysqli_query($connection, "UPDATE car_details SET  `description`='$tarea', capacity='$capacity',`type`='$typeoption', gears='$gearsoption', `status`='$status', status_purchasedate='$statuspdate',status_returndate='$statusrdate', price='$price'   where carid='$_SESSION[carid]' ");
   echo "<script> alert('Successfully Edited') </script>";
   echo "<script type='text/javascript'>window.location.href='index_manager.php';</script>";
 }

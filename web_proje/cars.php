@@ -119,7 +119,7 @@ if (!empty($_SESSION["email"])) {
                 inner join car_image on car_details.carimageid=car_image.carimageid
                 inner join branch on car_details.branchid=branch.branchid
                 where (branch.branchname='$city' and car_segment.carsegment='$segment') and car_details.carid not in (Select rents.carid from rents inner join car_details on rents.carid=car_details.carid 
-                where ( ('$_SESSION[purchase_date]' >= purchase_date and '$_SESSION[return_date]' <= return_date) or ('$_SESSION[purchase_date]' <= return_date and '$_SESSION[return_date]' >= return_date) or ('$_SESSION[purchase_date]' <= purchase_date and '$_SESSION[return_date]' >= return_date)))");
+                where ( (`status`='0') and ('$_SESSION[purchase_date]' >= purchase_date and '$_SESSION[return_date]' <= return_date) or ('$_SESSION[purchase_date]' <= return_date and '$_SESSION[return_date]' >= return_date) or ('$_SESSION[purchase_date]' <= purchase_date and '$_SESSION[return_date]' >= return_date)))");
 
                 while ($car = mysqli_fetch_assoc($result)) {
             ?>

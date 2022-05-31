@@ -1,7 +1,6 @@
 <?php
 include('../connect.php');
 $date = date("Y-m-d");
-//I select only cars that are not rented or rented in the past
 $result = mysqli_query($connection, "SELECT car_details.carid,car_name.carname,car_brand.brandname,car_image.image FROM car_details 
 inner join car_brand on car_details.brandid=car_brand.brandid 
 inner join car_name on car_details.carnameid=car_name.carnameid
@@ -36,6 +35,7 @@ $countbranches = mysqli_fetch_assoc($countbranch);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <link rel="stylesheet" href="manager_css/index_manager.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -99,6 +99,24 @@ $countbranches = mysqli_fetch_assoc($countbranch);
           </div>
 
         </div>
+        <div class="selectcity">
+
+          <div class="selectinfoo">
+            <span style="color:white" class="material-symbols-outlined"> visibility </span>
+            <a href="select_city.php">Click Here To See the Cars Belonging to Branhces.</a>
+          </div>
+          <div class="selectinfoo">
+            <span style="color:white" class="material-symbols-outlined"> visibility </span>
+            <a href="totalreservation.php">Click Here To See the Total Reservations.</a>
+          </div>
+          <div class="selectinfoo">
+            <span style="color:white" class="material-symbols-outlined"> visibility </span>
+            <a href="brokedown_cars.php">Click Here To See the BrokeDown Cars.</a>
+          </div>
+
+
+
+        </div>
         <div class="row">
           <?php
           while ($car = mysqli_fetch_assoc($result)) {
@@ -113,6 +131,9 @@ $countbranches = mysqli_fetch_assoc($countbranch);
               </div>
               <div class="submit">
                 <a href="edit_manager.php?carid=<?php echo $car["carid"] ?>"><input type="submit" value="Edit" /></a>
+              </div>
+              <div class="button">
+                <a href="cars_reserve_details.php?carid=<?php echo $car['carid'] ?>"><input type="submit" name="showreservations" value="Show Reservations"></a>
               </div>
             </div>
           <?php
@@ -133,6 +154,9 @@ $countbranches = mysqli_fetch_assoc($countbranch);
               </div>
               <div class="image">
                 <img id="carimage" src="../images/<?php echo $car2['image'] ?>" alt="">
+              </div>
+              <div class="button">
+                <a href="cars_reserve_details.php?carid=<?php echo $car2['carid'] ?>"><input type="submit" name="showreservations" value="Show Reservations"></a>
               </div>
             </div>
           <?php
